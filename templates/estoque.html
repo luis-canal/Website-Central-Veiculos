@@ -1,0 +1,11 @@
+<h1>Estoque</h1>
+
+{% for carro in carros %}
+  <div>
+    <h2>{{ carro.nome }}</h2>
+    <p>Ano: {{ carro.ano }}</p>
+    <p>Preço: R$ {{ carro.preco }}</p>
+
+    <a href="/carro/{{ loop.index0 }}">Ver mais</a>
+  </div>
+{% endfor %}
