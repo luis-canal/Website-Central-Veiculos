@@ -1,0 +1,62 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.banner {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.destaques {
+    padding: 20px;
+}
+
+.carros {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.preco {
+    color: green;
+    font-weight: bold;
+}
+
+.botao {
+    display: inline-block;
+    margin-top: 10px;
+    background: green;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}

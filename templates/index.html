@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Central Veículos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>🚗 Central Veículos</h1>
+    <nav>
+        <a href="/">Início</a>
+        <a href="/estoque">Estoque</a>
+    </nav>
+</header>
+
+<section class="banner">
+    <h2>Ofertas Imperdíveis</h2>
+    <p>Confira nossos veículos disponíveis</p>
+</section>
+
+<section class="destaques">
+    <h2>🔥 Destaques</h2>
+
+    <div class="carros">
+        {% for carro in carros %}
+            <div class="card">
+                <img src="{{ url_for('static', filename=carro.imagem) }}">
+                <h3>{{ carro.nome }}</h3>
+                <p>Ano: {{ carro.ano }}</p>
+                <p class="preco">R$ {{ carro.preco }}</p>
+
+                <a href="/carro/{{ loop.index0 }}" class="botao">
+                    Ver mais
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+</body>
+</html>
