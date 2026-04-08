@@ -1,3 +1,44 @@
-<a href="https://wa.me/5599999999999" target="_blank">
-  Falar no WhatsApp
-</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ carro.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>🚗 Central Veículos</h1>
+    <a href="/estoque">← Voltar</a>
+</header>
+
+<div class="container">
+
+    <div class="imagem">
+        <img src="{{ url_for('static', filename=carro.imagem) }}">
+    </div>
+
+    <div class="info">
+        <h2>{{ carro.nome }}</h2>
+
+        <p><strong>Ano:</strong> {{ carro.ano }}</p>
+        <p><strong>KM:</strong> {{ carro.km }}</p>
+
+        <h3 class="preco">R$ {{ carro.preco }}</h3>
+
+        <a 
+        href="https://wa.me/5554999999999?text=Tenho interesse no {{ carro.nome }} {{ carro.ano }}" 
+        class="botao-whatsapp"
+        target="_blank">
+            Falar no WhatsApp
+        </a>
+
+        <p class="descricao">
+            {{ carro.descricao if carro.descricao else "Veículo em ótimo estado, venha conferir!" }}
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

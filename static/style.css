@@ -68,3 +68,39 @@ nav a {
     border-radius: 5px;
     background: #25D366; 
 }
+
+.container {
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+}
+
+.imagem img {
+    width: 500px;
+    border-radius: 10px;
+}
+
+.info {
+    max-width: 400px;
+}
+
+.botao-whatsapp {
+    display: block;
+    background: #25D366;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin: 20px 0;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.botao-whatsapp:hover {
+    background: #1ebe5d;
+}
+
+.descricao {
+    margin-top: 20px;
+    color: #444;
+}

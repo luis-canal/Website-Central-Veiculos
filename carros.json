@@ -1,16 +1,18 @@
 [
-  {
+    {
     "nome": "Gol 1.0",
     "ano": 2020,
     "preco": 45900,
     "km": 60000,
-    "imagem": "gol.jpg"
+    "imagem": "gol.jpg",
+    "descricao": "Completo, econômico e bem conservado."
   },
-  {
-    "nome": "Onix LT",
-    "ano": 2019,
-    "preco": 49900,
-    "km": 55000,
-    "imagem": "onix.jpg"
+    {
+    "nome": "Onix 1.0",
+    "ano": 2020,
+    "preco": 78900,
+    "km": 140000,
+    "imagem": "onix.jpg",
+    "descricao": "Completaço, multimídia, rodas de liga e pronto pra rodar."
   }
 ]
