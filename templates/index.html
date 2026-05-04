@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central Veículos — Seminovos com Procedência</title>
+    <title>Central Veículos — Multimarcas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <header>
     <a href="/" class="logo">
-        <div class="logo-texto">CENTRAL <span>VEÍCULOS</span></div>
+        <img src="{{ url_for('static', filename='logo_central.png') }}" alt="Central Veículos">
     </a>
     <nav>
         <a href="/">Início</a>
@@ -20,7 +20,7 @@
 </header>
 
 <section class="hero">
-    <div class="hero-badge">✦ Seminovos com Procedência</div>
+    <div class="hero-badge">✦ Multimarcas — Seminovos com Procedência</div>
     <h1 class="hero-titulo">O CARRO<br>CERTO ESTÁ<br><em>AQUI.</em></h1>
     <p class="hero-subtitulo">Veículos revisados, com documentação em dia e preço justo. Venha conferir nosso estoque.</p>
     <div class="hero-botoes">
@@ -54,7 +54,7 @@
         {% for carro in carros %}
         <a href="/carro/{{ loop.index0 }}" class="card">
             <div class="card-img-wrapper">
-                <img src="{{ url_for('static', filename=carro.imagem) }}" 
+                <img src="{{ url_for('static', filename=carro.imagem) }}"
                      alt="{{ carro.nome }}"
                      onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>🚗</div>'">
                 <span class="card-badge">Destaque</span>
@@ -80,8 +80,10 @@
 
 <footer>
     <div class="footer-inner">
-        <div class="footer-logo">CENTRAL <span>VEÍCULOS</span></div>
-        <p class="footer-copy">© 2025 Central Veículos. Todos os direitos reservados.</p>
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='logo_central.png') }}" alt="Central Veículos">
+        </div>
+        <p class="footer-copy">© 2025 Central Veículos Multimarcas. Todos os direitos reservados.</p>
     </div>
 </footer>
 
