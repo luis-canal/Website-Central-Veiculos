@@ -1,11 +1,66 @@
-<h1>Estoque</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque — Central Veículos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-{% for carro in carros %}
-  <div>
-    <h2>{{ carro.nome }}</h2>
-    <p>Ano: {{ carro.ano }}</p>
-    <p>Preço: R$ {{ carro.preco }}</p>
+<header>
+    <a href="/" class="logo">
+        <div class="logo-texto">CENTRAL <span>VEÍCULOS</span></div>
+    </a>
+    <nav>
+        <a href="/">Início</a>
+        <a href="/estoque">Estoque</a>
+        <a href="https://wa.me/5554999999999" target="_blank" class="destaque">💬 WhatsApp</a>
+    </nav>
+</header>
 
-    <a href="/carro/{{ loop.index0 }}">Ver mais</a>
-  </div>
-{% endfor %}
+<div class="estoque-hero">
+    <h1>ESTOQUE <span>COMPLETO</span></h1>
+    <p>{{ carros|length }} veículo{{ 's' if carros|length != 1 else '' }} disponível{{ 'is' if carros|length != 1 else '' }}</p>
+    <div class="estoque-filtros">
+        <button class="filtro-btn ativo">Todos</button>
+    </div>
+</div>
+
+<section class="secao">
+    <div class="grid-carros">
+        {% for carro in carros %}
+        <a href="/carro/{{ loop.index0 }}" class="card">
+            <div class="card-img-wrapper">
+                <img src="{{ url_for('static', filename=carro.imagem) }}" 
+                     alt="{{ carro.nome }}"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>🚗</div>'">
+            </div>
+            <div class="card-body">
+                <div class="card-nome">{{ carro.nome }}</div>
+                <div class="card-detalhes">
+                    <span class="card-detalhe">📅 {{ carro.ano }}</span>
+                    <span class="card-detalhe">📍 {{ carro.km }} km</span>
+                </div>
+                <div class="card-footer">
+                    <div class="card-preco">
+                        <small>a partir de</small>
+                        R$ {{ carro.preco }}
+                    </div>
+                    <span class="card-btn">Ver detalhes</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">CENTRAL <span>VEÍCULOS</span></div>
+        <p class="footer-copy">© 2025 Central Veículos. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+</body>
+</html>

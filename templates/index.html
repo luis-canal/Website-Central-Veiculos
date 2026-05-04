@@ -1,44 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Central Veículos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Veículos — Seminovos com Procedência</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
 <header>
-    <h1>🚗 Central Veículos</h1>
+    <a href="/" class="logo">
+        <div class="logo-texto">CENTRAL <span>VEÍCULOS</span></div>
+    </a>
     <nav>
         <a href="/">Início</a>
         <a href="/estoque">Estoque</a>
+        <a href="https://wa.me/5554999999999" target="_blank" class="destaque">💬 WhatsApp</a>
     </nav>
 </header>
 
-<section class="banner">
-    <h2>Ofertas Imperdíveis</h2>
-    <p>Confira nossos veículos disponíveis</p>
-</section>
-
-<section class="destaques">
-    <h2>🔥 Destaques</h2>
-
-    <div class="carros">
-        {% for carro in carros %}
-            <div class="card">
-                <img src="{{ url_for('static', filename=carro.imagem) }}">
-                <h3>{{ carro.nome }}</h3>
-                <p>Ano: {{ carro.ano }}</p>
-                <p class="preco">R$ {{ carro.preco }}</p>
-
-                <a href="/carro/{{ loop.index0 }}" class="botao">
-                    Ver mais
-                </a>
-            </div>
-        {% endfor %}
+<section class="hero">
+    <div class="hero-badge">✦ Seminovos com Procedência</div>
+    <h1 class="hero-titulo">O CARRO<br>CERTO ESTÁ<br><em>AQUI.</em></h1>
+    <p class="hero-subtitulo">Veículos revisados, com documentação em dia e preço justo. Venha conferir nosso estoque.</p>
+    <div class="hero-botoes">
+        <a href="/estoque" class="btn-primario">Ver Estoque Completo →</a>
+        <a href="https://wa.me/5554999999999" class="btn-secundario" target="_blank">💬 Falar no WhatsApp</a>
     </div>
 
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-numero">+50</div>
+            <div class="stat-label">Veículos</div>
+        </div>
+        <div class="stat">
+            <div class="stat-numero">10+</div>
+            <div class="stat-label">Anos no mercado</div>
+        </div>
+        <div class="stat">
+            <div class="stat-numero">★ 5.0</div>
+            <div class="stat-label">Avaliação</div>
+        </div>
+    </div>
 </section>
+
+<section class="secao">
+    <div class="secao-header">
+        <h2 class="secao-titulo">🔥 EM <span>DESTAQUE</span></h2>
+        <a href="/estoque" class="secao-link">Ver todos →</a>
+    </div>
+
+    <div class="grid-carros">
+        {% for carro in carros %}
+        <a href="/carro/{{ loop.index0 }}" class="card">
+            <div class="card-img-wrapper">
+                <img src="{{ url_for('static', filename=carro.imagem) }}" 
+                     alt="{{ carro.nome }}"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>🚗</div>'">
+                <span class="card-badge">Destaque</span>
+            </div>
+            <div class="card-body">
+                <div class="card-nome">{{ carro.nome }}</div>
+                <div class="card-detalhes">
+                    <span class="card-detalhe">📅 {{ carro.ano }}</span>
+                    <span class="card-detalhe">📍 {{ carro.km }} km</span>
+                </div>
+                <div class="card-footer">
+                    <div class="card-preco">
+                        <small>a partir de</small>
+                        R$ {{ carro.preco }}
+                    </div>
+                    <span class="card-btn">Ver detalhes</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">CENTRAL <span>VEÍCULOS</span></div>
+        <p class="footer-copy">© 2025 Central Veículos. Todos os direitos reservados.</p>
+    </div>
+</footer>
 
 </body>
 </html>
