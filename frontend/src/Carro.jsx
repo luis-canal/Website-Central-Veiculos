@@ -6,9 +6,10 @@ function Carro() {
   const [carro, setCarro] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/carro/${id}`)
+    fetch(`/api/carro/${id}`)
       .then(response => response.json())
-      .then(data => setCarro(data));
+      .then(data => setCarro(data))
+      .catch(error => console.error('Erro ao carregar carro:', error));
   }, [id]);
 
   if (!carro) return <div>Carregando...</div>;

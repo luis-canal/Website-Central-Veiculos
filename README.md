@@ -12,9 +12,45 @@ Website desenvolvido para a Central Veículos com foco na divulgação de veícu
 
 ## 🛠️ Tecnologias utilizadas
 
-- HTML
+- React
+- Vite
+- Flask
+- Python
 - CSS
-- JavaScript
+
+## 🚀 Estrutura do projeto
+
+- `app.py` — backend Flask que expõe a API de veículos
+- `carros.json` — dados dos veículos
+- `frontend/` — aplicação React com Vite
+
+## ▶️ Como rodar em desenvolvimento
+
+1. No terminal principal:
+   ```powershell
+   python app.py
+   ```
+2. Em outro terminal:
+   ```powershell
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+Acesse: `http://localhost:5173`
+
+## 📦 Como rodar em produção
+
+1. No diretório `frontend/`:
+   ```powershell
+   npm run build
+   ```
+2. Volte para a raiz do projeto e execute:
+   ```powershell
+   python app.py
+   ```
+
+O Flask servirá o frontend construído em `frontend/dist`.
 
 ## 🎯 Objetivo
 

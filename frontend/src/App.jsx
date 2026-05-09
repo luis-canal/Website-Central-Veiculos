@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Estoque from './Estoque';
 import Carro from './Carro';
-import './App.css';
 
 function App() {
   return (

@@ -5,9 +5,10 @@ function Estoque() {
   const [carros, setCarros] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/carros')
+    fetch('/api/carros')
       .then(response => response.json())
-      .then(data => setCarros(data));
+      .then(data => setCarros(data))
+      .catch(error => console.error('Erro ao carregar carros:', error));
   }, []);
 
   return (

@@ -5,9 +5,10 @@ function Home() {
   const [carros, setCarros] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/carros')
+    fetch('/api/carros')
       .then(response => response.json())
-      .then(data => setCarros(data.slice(0, 3))); // Apenas os primeiros 3
+      .then(data => setCarros(data.slice(0, 3))) // Apenas os primeiros 3
+      .catch(error => console.error('Erro ao carregar carros:', error));
   }, []);
 
   return (
