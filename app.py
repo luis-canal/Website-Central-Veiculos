@@ -1,7 +1,9 @@
 from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 def carregar_carros():
     with open('carros.json') as f:
