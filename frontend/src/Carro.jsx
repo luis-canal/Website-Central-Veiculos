@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function Carro() {
   const { id } = useParams();
@@ -16,12 +16,12 @@ function Carro() {
   return (
     <div>
       <header>
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <img src="/logo_central.png" alt="Central Veículos" />
-        </a>
+        </Link>
         <nav>
-          <a href="/">Início</a>
-          <a href="/estoque">Estoque</a>
+          <Link to="/">Início</Link>
+          <Link to="/estoque">Estoque</Link>
           <a href="https://wa.me/5554999999999" target="_blank" className="destaque">Conversar no WhatsApp</a>
         </nav>
       </header>

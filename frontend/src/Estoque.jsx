@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Estoque() {
   const [carros, setCarros] = useState([]);
@@ -12,12 +13,12 @@ function Estoque() {
   return (
     <div>
       <header>
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <img src="/logo_central.png" alt="Central Veículos" />
-        </a>
+        </Link>
         <nav>
-          <a href="/">Início</a>
-          <a href="/estoque">Estoque</a>
+          <Link to="/">Início</Link>
+          <Link to="/estoque">Estoque</Link>
           <a href="https://wa.me/5554999999999" target="_blank" className="destaque">Conversar no WhatsApp</a>
         </nav>
       </header>
@@ -33,7 +34,7 @@ function Estoque() {
       <section className="secao">
         <div className="grid-carros">
           {carros.map((carro, index) => (
-            <a key={index} href={`/carro/${index}`} className="card">
+            <Link key={index} to={`/carro/${index}`} className="card">
               <div className="card-img-wrapper">
                 <img src={`/${carro.imagem}`} alt={carro.nome} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '<div class=\'img-placeholder\'>🚗</div>'; }} />
               </div>
@@ -51,7 +52,7 @@ function Estoque() {
                   <span className="card-btn">Ver detalhes</span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

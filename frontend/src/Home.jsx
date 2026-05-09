@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [carros, setCarros] = useState([]);
@@ -12,12 +13,12 @@ function Home() {
   return (
     <div>
       <header>
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <img src="/logo_central.png" alt="Central Veículos" />
-        </a>
+        </Link>
         <nav>
-          <a href="/">Início</a>
-          <a href="/estoque">Estoque</a>
+          <Link to="/">Início</Link>
+          <Link to="/estoque">Estoque</Link>
           <a href="https://wa.me/5554999999999" target="_blank" className="destaque">Conversar no WhatsApp</a>
         </nav>
       </header>
@@ -27,7 +28,7 @@ function Home() {
         <h1 className="hero-titulo">SEU PRÓXIMO<br />CARRO ESTÁ<br /><em>AQUI!</em></h1>
         <p className="hero-subtitulo">Veículos revisados, com documentação em dia e preço justo. Venha conferir nosso estoque.</p>
         <div className="hero-botoes">
-          <a href="/estoque" className="btn-primario">Ver Estoque Completo →</a>
+          <Link to="/estoque" className="btn-primario">Ver Estoque Completo →</Link>
           <a href="https://wa.me/5554999999999" className="btn-secundario" target="_blank">💬 Falar no WhatsApp</a>
         </div>
 
@@ -50,11 +51,11 @@ function Home() {
       <section className="secao">
         <div className="secao-header">
           <h2 className="secao-titulo">🔥 EM <span>DESTAQUE</span></h2>
-          <a href="/estoque" className="secao-link">Ver todos →</a>
+          <Link to="/estoque" className="secao-link">Ver todos →</Link>
         </div>
         <div className="grid-carros">
           {carros.map((carro, index) => (
-            <a key={index} href={`/carro/${index}`} className="card">
+            <Link key={index} to={`/carro/${index}`} className="card">
               <div className="card-img-wrapper">
                 <img src={`/${carro.imagem}`} alt={carro.nome} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '<div class=\'img-placeholder\'>🚗</div>'; }} />
               </div>
@@ -72,7 +73,7 @@ function Home() {
                   <span className="card-btn">Ver detalhes</span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
