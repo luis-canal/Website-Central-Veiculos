@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function Carro() {
   const { id } = useParams();
@@ -13,6 +16,16 @@ function Carro() {
   }, [id]);
 
   if (!carro) return <div>Carregando...</div>;
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
 
   return (
     <div>
@@ -29,7 +42,13 @@ function Carro() {
 
       <section className="carro-detalhes">
         <div className="carro-galeria">
-          <img src={`/${carro.imagem}`} alt={carro.nome} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '<div class=\'img-placeholder\'>🚗</div>'; }} />
+          <Slider {...settings}>
+            {carro.imagens.map((img, index) => (
+              <div key={index}>
+                <img src={`/${img}`} alt={`${carro.nome} - ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+              </div>
+            ))}
+          </Slider>
         </div>
         <div className="carro-info">
           <h1>{carro.nome}</h1>

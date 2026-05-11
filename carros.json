@@ -1,18 +1,42 @@
 [
-    {
+  {
     "nome": "Gol 1.0",
     "ano": 2020,
     "preco": 45900,
     "km": 60000,
-    "imagem": "gol.jpg",
-    "descricao": "Completo, econômico e bem conservado."
+    "imagens": ["gol1.jpg", "gol2.jpg", "gol3.jpg"],
+    "descricao": "Completo, econômico e bem conservado. Ideal para o dia a dia."
   },
-    {
+  {
     "nome": "Onix 1.0",
     "ano": 2020,
     "preco": 78900,
     "km": 140000,
-    "imagem": "onix.jpg",
+    "imagens": ["onix1.jpg", "onix2.jpg"],
     "descricao": "Completaço, multimídia, rodas de liga e pronto pra rodar."
+  },
+  {
+    "nome": "Civic EX",
+    "ano": 2019,
+    "preco": 95000,
+    "km": 85000,
+    "imagens": ["civic1.jpg", "civic2.jpg", "civic3.jpg", "civic4.jpg"],
+    "descricao": "Honda Civic EX, motor 2.0, câmbio CVT, muito conforto e economia."
+  },
+  {
+    "nome": "Corolla XEi",
+    "ano": 2021,
+    "preco": 105000,
+    "km": 45000,
+    "imagens": ["corolla1.jpg", "corolla2.jpg"],
+    "descricao": "Toyota Corolla XEi, seminovo com garantia, perfeito para família."
+  },
+  {
+    "nome": "HB20 Comfort",
+    "ano": 2022,
+    "preco": 72000,
+    "km": 30000,
+    "imagens": ["hb201.jpg", "hb202.jpg", "hb203.jpg"],
+    "descricao": "Hyundai HB20 Comfort, baixo km, revisado e com ar condicionado."
   }
 ]

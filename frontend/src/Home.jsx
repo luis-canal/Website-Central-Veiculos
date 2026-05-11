@@ -58,7 +58,7 @@ function Home() {
           {carros.map((carro, index) => (
             <Link key={index} to={`/carro/${index}`} className="card">
               <div className="card-img-wrapper">
-                <img src={`/${carro.imagem}`} alt={carro.nome} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '<div class=\'img-placeholder\'>🚗</div>'; }} />
+                <img src={`/${carro.imagens[0]}`} alt={carro.nome} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '<div class=\'img-placeholder\'>🚗</div>'; }} />
               </div>
               <div className="card-body">
                 <div className="card-nome">{carro.nome}</div>
