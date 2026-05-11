@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 function Carro() {
   const { id } = useParams();
   const [carro, setCarro] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/carro/${id}`)
+    fetch(`http://127.0.0.1:5000/api/carro/${id}`)
       .then(response => response.json())
       .then(data => setCarro(data))
       .catch(error => console.error('Erro ao carregar carro:', error));
@@ -17,13 +14,16 @@ function Carro() {
 
   if (!carro) return <div>Carregando...</div>;
 
+  // Verificar se imagens é um array válido
+  const imagens = Array.isArray(carro.imagens) ? carro.imagens : [];
+
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: imagens.length > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: imagens.length > 1,
     autoplaySpeed: 3000,
   };
 
@@ -42,13 +42,13 @@ function Carro() {
 
       <section className="carro-detalhes">
         <div className="carro-galeria">
-          <Slider {...settings}>
-            {carro.imagens.map((img, index) => (
-              <div key={index}>
-                <img src={`/${img}`} alt={`${carro.nome} - ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
-              </div>
-            ))}
-          </Slider>
+          {imagens.length > 0 ? (
+            imagens.map((img, index) => (
+              <img key={index} src={`/${img}`} alt={`${carro.nome} - ${index + 1}`} style={{ width: '100%', height: 'auto', marginBottom: '10px' }} />
+            ))
+          ) : (
+            <div className="img-placeholder">🚗</div>
+          )}
         </div>
         <div className="carro-info">
           <h1>{carro.nome}</h1>

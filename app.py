@@ -6,7 +6,7 @@ import json
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIST = os.path.join(BASE_DIR, 'frontend', 'dist')
 
-app = Flask(__name__, static_folder=FRONTEND_DIST, static_url_path='')
+app = Flask(__name__)
 CORS(app)
 
 def carregar_carros():
@@ -25,12 +25,20 @@ def api_carro(id):
         return jsonify(carros[id])
     return jsonify({'error': 'Carro não encontrado'}), 404
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve_frontend(path):
-    if path != '' and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    return send_from_directory(app.static_folder, 'index.html')
+@app.route('/assets/<path:filename>')
+def serve_assets(filename):
+    return send_from_directory(os.path.join(FRONTEND_DIST, 'assets'), filename)
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    file_path = os.path.join(FRONTEND_DIST, filename)
+    if os.path.exists(file_path):
+        return send_from_directory(FRONTEND_DIST, filename)
+    return send_from_directory(FRONTEND_DIST, 'index.html')
+
+@app.route('/')
+def serve_index():
+    return send_from_directory(FRONTEND_DIST, 'index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
