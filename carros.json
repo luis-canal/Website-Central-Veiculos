@@ -1,42 +1,82 @@
 [
   {
-    "nome": "Gol 1.0",
+    "id": "gol-2020-001",
+    "nome": "Gol",
+    "marca": "Volkswagen",
+    "versao": "1.0 MSI",
     "ano": 2020,
     "preco": 45900,
     "km": 60000,
+    "combustivel": "Flex",
+    "cambio": "Manual",
+    "cor": "Branco",
     "imagens": ["gol1.jpg", "gol2.jpg", "gol3.jpg"],
-    "descricao": "Completo, econômico e bem conservado. Ideal para o dia a dia."
+    "descricao": "Completo, econômico e bem conservado. Ideal para o dia a dia.",
+    "destaque": true,
+    "externo_id": null
   },
   {
-    "nome": "Onix 1.0",
+    "id": "onix-2020-002",
+    "nome": "Onix",
+    "marca": "Chevrolet",
+    "versao": "1.0 LT",
     "ano": 2020,
     "preco": 78900,
     "km": 140000,
+    "combustivel": "Flex",
+    "cambio": "Manual",
+    "cor": "Prata",
     "imagens": ["onix1.jpg", "onix2.jpg"],
-    "descricao": "Completaço, multimídia, rodas de liga e pronto pra rodar."
+    "descricao": "Completaço, multimídia, rodas de liga e pronto pra rodar.",
+    "destaque": true,
+    "externo_id": null
   },
   {
-    "nome": "Civic EX",
+    "id": "civic-2019-003",
+    "nome": "Civic",
+    "marca": "Honda",
+    "versao": "EX 2.0",
     "ano": 2019,
     "preco": 95000,
     "km": 85000,
+    "combustivel": "Flex",
+    "cambio": "CVT",
+    "cor": "Preto",
     "imagens": ["civic1.jpg", "civic2.jpg", "civic3.jpg", "civic4.jpg"],
-    "descricao": "Honda Civic EX, motor 2.0, câmbio CVT, muito conforto e economia."
+    "descricao": "Honda Civic EX, motor 2.0, câmbio CVT, muito conforto e economia.",
+    "destaque": true,
+    "externo_id": null
   },
   {
-    "nome": "Corolla XEi",
+    "id": "corolla-2021-004",
+    "nome": "Corolla",
+    "marca": "Toyota",
+    "versao": "XEi",
     "ano": 2021,
     "preco": 105000,
     "km": 45000,
+    "combustivel": "Flex",
+    "cambio": "Automático",
+    "cor": "Cinza",
     "imagens": ["corolla1.jpg", "corolla2.jpg"],
-    "descricao": "Toyota Corolla XEi, seminovo com garantia, perfeito para família."
+    "descricao": "Toyota Corolla XEi, seminovo com garantia, perfeito para família.",
+    "destaque": false,
+    "externo_id": null
   },
   {
-    "nome": "HB20 Comfort",
+    "id": "hb20-2022-005",
+    "nome": "HB20",
+    "marca": "Hyundai",
+    "versao": "Comfort",
     "ano": 2022,
     "preco": 72000,
     "km": 30000,
+    "combustivel": "Flex",
+    "cambio": "Manual",
+    "cor": "Branco",
     "imagens": ["hb201.jpg", "hb202.jpg", "hb203.jpg"],
-    "descricao": "Hyundai HB20 Comfort, baixo km, revisado e com ar condicionado."
+    "descricao": "Hyundai HB20 Comfort, baixo km, revisado e com ar condicionado.",
+    "destaque": false,
+    "externo_id": null
   }
 ]

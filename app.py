@@ -18,11 +18,12 @@ def api_carros():
     carros = carregar_carros()
     return jsonify(carros)
 
-@app.route('/api/carro/<int:id>')
+@app.route('/api/carro/<string:id>')
 def api_carro(id):
     carros = carregar_carros()
-    if 0 <= id < len(carros):
-        return jsonify(carros[id])
+    carro = next((carro for carro in carros if carro.get('id') == id), None)
+    if carro is not None:
+        return jsonify(carro)
     return jsonify({'error': 'Carro não encontrado'}), 404
 
 @app.route('/assets/<path:filename>')
