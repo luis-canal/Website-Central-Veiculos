@@ -44,13 +44,10 @@ header {
 .logo { display: flex; align-items: center; text-decoration: none; }
 
 .logo img {
-  height: 46px;
-  width: auto;
+  height: 80px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
-
-nav { display: flex; align-items: center; gap: 6px; }
 
 nav a {
   color: #ccc;
