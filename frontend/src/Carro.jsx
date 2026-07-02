@@ -6,7 +6,7 @@ function Carro() {
   const [carro, setCarro] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5000/api/carro/${id}`)
+    fetch(`/api/carro/${id}`)
       .then(response => response.json())
       .then(data => setCarro(data))
       .catch(error => console.error('Erro ao carregar carro:', error));
@@ -14,33 +14,11 @@ function Carro() {
 
   if (!carro) return <div>Carregando...</div>;
 
-  // Verificar se imagens é um array válido
   const imagens = Array.isArray(carro.imagens) ? carro.imagens : [];
 
-  const settings = {
-    dots: true,
-    infinite: imagens.length > 1,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: imagens.length > 1,
-    autoplaySpeed: 3000,
-  };
-
   return (
-    <div>
-      <header>
-        <Link to="/" className="logo">
-          <img src="/logo_central.png" alt="Central Veículos" />
-        </Link>
-        <nav>
-          <Link to="/">Início</Link>
-          <Link to="/estoque">Estoque</Link>
-          <a href="https://wa.me/5554999999999" target="_blank" className="destaque">Conversar no WhatsApp</a>
-        </nav>
-      </header>
-
-      <section className="carro-detalhes">
+    <main className="carro-page">
+      <div className="carro-grid">
         <div className="carro-galeria">
           {imagens.length > 0 ? (
             imagens.map((img, index) => (
@@ -50,24 +28,37 @@ function Carro() {
             <div className="img-placeholder">🚗</div>
           )}
         </div>
-        <div className="carro-info">
-          <h1>{carro.nome}</h1>
-          <div className="carro-preco">R$ {carro.preco}</div>
-          <div className="carro-especs">
-            <div className="espec">
-              <span className="espec-label">Ano:</span>
-              <span className="espec-valor">{carro.ano}</span>
+        <aside className="carro-sidebar">
+          <div className="carro-marca">{carro.marca}</div>
+          <h1 className="carro-nome">{carro.nome}</h1>
+          <div className="carro-preco-bloco">
+            <div className="carro-preco-label">Preço</div>
+            <div className="carro-preco-valor">R$ {carro.preco}</div>
+          </div>
+          <div className="carro-specs">
+            <div className="spec">
+              <span className="spec-label">Ano:</span>
+              <span className="spec-valor">{carro.ano}</span>
             </div>
-            <div className="espec">
-              <span className="espec-label">Quilometragem:</span>
-              <span className="espec-valor">{carro.km} km</span>
+            <div className="spec">
+              <span className="spec-label">Quilometragem:</span>
+              <span className="spec-valor">{carro.km} km</span>
             </div>
           </div>
-          <p className="carro-descricao">{carro.descricao}</p>
-          <a href="https://wa.me/5554999999999" className="btn-primario" target="_blank">💬 Conversar no WhatsApp</a>
-        </div>
+          <a href="https://wa.me/5554999999999" className="btn-whatsapp" target="_blank" rel="noreferrer">
+            💬 Conversar no WhatsApp
+          </a>
+          <Link to="/estoque" className="btn-voltar-estoque">
+            ← Voltar para o estoque
+          </Link>
+        </aside>
+      </div>
+
+      <section className="carro-descricao">
+        <h3>Descrição</h3>
+        <p>{carro.descricao}</p>
       </section>
-    </div>
+    </main>
   );
 }
 

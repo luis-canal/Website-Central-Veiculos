@@ -1,7 +1,7 @@
 export function filterCars(cars = [], filters = {}) {
   const {
     search = '',
-    marca = '',
+    marca: marcaFiltro = '',
     precoMin = '',
     precoMax = '',
     anoMin = '',
@@ -23,7 +23,7 @@ export function filterCars(cars = [], filters = {}) {
     const versao = String(carro?.versao || '').toLowerCase();
 
     const atendeTexto = !termo || [nome, marca, versao].some((valor) => valor.includes(termo));
-    const atendeMarca = !marca || !filters?.marca || String(carro?.marca || '').toLowerCase() === marca.toLowerCase();
+    const atendeMarca = !marcaFiltro || !filters?.marca || String(carro?.marca || '').toLowerCase() === marcaFiltro.toLowerCase();
     const atendePrecoMin = Number.isNaN(precoMinValue) || Number(carro?.preco || 0) >= precoMinValue;
     const atendePrecoMax = Number.isNaN(precoMaxValue) || Number(carro?.preco || 0) <= precoMaxValue;
     const atendeAnoMin = Number.isNaN(anoMinValue) || Number(carro?.ano || 0) >= anoMinValue;
