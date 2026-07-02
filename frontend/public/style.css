@@ -263,6 +263,8 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .sobre-texto {
   max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .sobre-texto h2 {
