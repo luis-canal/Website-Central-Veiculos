@@ -9,7 +9,7 @@ function HeroCarousel({ images }) {
     if (!slides.length) return undefined;
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % slides.length);
-    }, 5000);
+    }, 10000);
     return () => window.clearInterval(timer);
   }, [slides.length]);
 

@@ -15,7 +15,7 @@ export const loja = {
   mapsEmbedUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.7886865326635!2d-51.845565657572905!3d-28.38843522042582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e277fa4942f033%3A0xf9a60d1b65f7743!2sAv.%20Fabr%C3%ADcio%20de%20Oliveira%20Pilar%2C%20779%2C%20David%20Canabarro%20-%20RS%2C%2099980-000!5e1!3m2!1spt-BR!2sbr!4v1782867917583!5m2!1spt-BR!2sbr',
   logo: '/logo_central.png',
-  heroImagens: ['/banner1.PNG', '/banner2.PNG', '/banner3.PNG'],
+  heroImagens: ['/banner2.PNG', '/banner1.PNG', '/banner3.PNG'],
   diferenciais: [
     { titulo: 'Procedência garantida', descricao: 'Veículos selecionados com histórico confiável.' },
     { titulo: 'Financiamento', descricao: 'Sicredi, C6 Bank, Cresol e Sicoob.' },
