@@ -22,7 +22,7 @@ function Home() {
 
   return (
     <div>
-      <section className="hero hero-home">
+      <section className="hero-home">
         <HeroCarousel images={loja.heroImagens} />
       </section>
 
