@@ -18,8 +18,8 @@ function HeroCarousel({ images }) {
   }
 
   return (
-    <div className="hero-bg" style={{ backgroundImage: `url(${slides[index]})` }}>
-      <div className="hero-overlay" />
+    <div className="hero-bg">
+      <img className="hero-img" src={slides[index]} alt={`Banner ${index + 1}`} />
     </div>
   );
 }
