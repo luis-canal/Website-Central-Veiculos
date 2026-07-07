@@ -1,7 +1,6 @@
 ﻿import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeroCarousel from './components/HeroCarousel';
-import SearchBar from './components/SearchBar';
 import VehicleCard from './components/VehicleCard';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
@@ -25,20 +24,6 @@ function Home() {
     <div>
       <section className="hero hero-home">
         <HeroCarousel images={loja.heroImagens} />
-        <div className="hero-content">
-          <span className="hero-badge">{loja.subtitulo} • Seminovos</span>
-          <h1 className="hero-titulo">{loja.slogan}</h1>
-          <p className="hero-subtitulo">{loja.sobre}</p>
-          <div className="hero-botoes">
-            <button type="button" className="btn-primario" onClick={() => navigate('/estoque')}>
-              Ver Estoque Completo
-            </button>
-            <a href={`https://wa.me/${loja.whatsapp}`} target="_blank" rel="noreferrer" className="btn-secundario">
-              💬 Falar no WhatsApp
-            </a>
-          </div>
-          <SearchBar onSearch={handleSearch} />
-        </div>
       </section>
 
       <section className="secao sobre">
