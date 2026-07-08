@@ -58,12 +58,12 @@ class VehicleScraper:
 
     def _parse_detail_page(self, html: str, detail_url: str) -> Dict[str, Any]:
         soup = BeautifulSoup(html, "html.parser")
-        title = self._clean_text(self._find_text(soup, ["h1", "h2", "h3", ".title", ".vehicle-title"]))
+        title = self._extract_title(soup)
         price_text = self._clean_text(self._find_text(soup, [".price", ".preco", ".valor", "strong"])) or self._extract_price_from_text(soup)
-        brand_text = self._clean_text(self._find_text(soup, [".marca", ".brand", ".fabricante"]))
+        brand_text = self._clean_text(self._find_text(soup, [".marca", ".brand", ".fabricante"])) or self._extract_brand_from_details(soup)
         description = self._clean_text(self._find_text(soup, [".description", ".descricao", "p"]))
         images = [self._normalize_image_url(img.get("src")) for img in soup.find_all("img") if img.get("src") and not self._is_brand_image(img.get("src"))]
-        images = [img for img in images if img]
+        images = [img for img in images if img and self._is_vehicle_image(img)]
         images = self._dedupe_images(images)
 
         placa = self._extract_plate(soup)
@@ -199,6 +199,38 @@ class VehicleScraper:
         return fallback
 
     @staticmethod
+    def _extract_brand_from_details(soup: BeautifulSoup):
+        rows = soup.select('.detalhes .row')
+        for row in rows:
+            cells = [cell for cell in row.find_all(['div', 'span']) if cell.get_text(" ", strip=True)]
+            if not cells:
+                continue
+
+            title_cells = [cell for cell in cells if "title" in cell.get("class", [])]
+            value_cells = [cell for cell in cells if "title" not in cell.get("class", [])]
+
+            for idx, cell in enumerate(title_cells):
+                text = cell.get_text(" ", strip=True)
+                if text.lower() == "marca":
+                    if idx < len(value_cells):
+                        candidate = value_cells[idx].get_text(" ", strip=True)
+                        if candidate and candidate.lower() not in {"km", "", "preço*", "preco*"}:
+                            return candidate
+                    break
+        return None
+
+    @staticmethod
+    def _extract_title(soup: BeautifulSoup):
+        meta_title = soup.select_one('meta[property="og:title"]')
+        if meta_title and meta_title.get("content"):
+            return meta_title.get("content").strip()
+        for selector in ["h3.detalhes_title", ".detalhes_title", "h1", "h2", "h3", ".title", ".vehicle-title"]:
+            element = soup.select_one(selector)
+            if element and element.get_text(strip=True):
+                return element.get_text(" ", strip=True)
+        return None
+
+    @staticmethod
     def _extract_plate(soup: BeautifulSoup):
         text = soup.get_text(" ", strip=True)
         match = re.search(r"\b([A-Za-z]{3}(?:-?\d{4}|\d[A-Za-z0-9]\d{2}))\b", text, re.IGNORECASE)
@@ -241,7 +273,14 @@ class VehicleScraper:
         if not value:
             return False
         lowered = value.lower()
-        return any(token in lowered for token in ["marca", "logo", "icon", "gif", "avatar"])
+        return any(token in lowered for token in ["marca", "logo", "icon", "gif", "avatar", "bgcar", "wzt", "wzpa", "watts"])
+
+    @staticmethod
+    def _is_vehicle_image(value):
+        if not value:
+            return False
+        lowered = value.lower()
+        return any(token in lowered for token in ["bigimage", "fotos", "foto"])
 
     @staticmethod
     def _normalize_image_url(value):
