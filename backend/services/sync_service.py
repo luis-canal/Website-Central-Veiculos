@@ -75,6 +75,7 @@ class VehicleSyncService:
             combustivel=data.get("combustivel"),
             cambio=data.get("cambio"),
             cor=data.get("cor"),
+            placa=data.get("placa"),
             imagens=self._serialize_list(data.get("imagens")),
             descricao=data.get("descricao"),
             opcionais=self._serialize_list(data.get("opcionais")),
@@ -99,6 +100,7 @@ class VehicleSyncService:
         vehicle.combustivel = data.get("combustivel")
         vehicle.cambio = data.get("cambio")
         vehicle.cor = data.get("cor")
+        vehicle.placa = data.get("placa")
         vehicle.imagens = self._serialize_list(data.get("imagens"))
         vehicle.descricao = data.get("descricao")
         vehicle.opcionais = self._serialize_list(data.get("opcionais"))

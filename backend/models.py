@@ -20,6 +20,7 @@ class Vehicle(Base):
     combustivel = Column(String(100), nullable=True)
     cambio = Column(String(100), nullable=True)
     cor = Column(String(100), nullable=True)
+    placa = Column(String(20), nullable=True)
     imagens = Column(Text, nullable=True)
     descricao = Column(Text, nullable=True)
     opcionais = Column(Text, nullable=True)
@@ -44,6 +45,7 @@ class Vehicle(Base):
             "combustivel": self.combustivel,
             "cambio": self.cambio,
             "cor": self.cor,
+            "placa": self.placa,
             "imagens": self._parse_json(self.imagens),
             "descricao": self.descricao,
             "opcionais": self._parse_json(self.opcionais),
