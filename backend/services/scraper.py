@@ -1,7 +1,8 @@
 import logging
 import re
+import time
 from typing import List, Dict, Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, parse_qs, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,9 +13,10 @@ logger = logging.getLogger(__name__)
 
 
 class VehicleScraper:
-    def __init__(self, base_url=None, timeout=None):
+    def __init__(self, base_url=None, timeout=None, session=None):
         self.base_url = base_url or SCRAPER_URL
         self.timeout = timeout or SCRAPER_TIMEOUT
+        self.session = session or requests.Session()
 
     def scrape(self) -> List[Dict[str, Any]]:
         if not self.base_url:
@@ -22,23 +24,27 @@ class VehicleScraper:
             return []
 
         try:
-            response = requests.get(self.base_url, timeout=self.timeout, headers=self._headers())
+            response = self._request(self.base_url)
             response.raise_for_status()
         except requests.RequestException as exc:
             logger.exception("Erro ao acessar a página da loja: %s", exc)
             return []
 
         soup = BeautifulSoup(response.text, "html.parser")
-        listing_links = self._extract_listing_links(soup)
+        listing_items = self._extract_listing_items(soup)
         vehicles = []
 
-        for link in listing_links:
+        for listing_item in listing_items:
             try:
-                vehicle = self._fetch_vehicle_page(link)
+                vehicle = self._fetch_vehicle_page(listing_item.get("url"))
                 if vehicle:
+                    vehicle["external_id"] = listing_item.get("external_id") or vehicle.get("external_id")
+                    vehicle["nome"] = vehicle.get("nome") or listing_item.get("title")
+                    vehicle["ano"] = vehicle.get("ano") or listing_item.get("year")
+                    vehicle["imagens"] = vehicle.get("imagens") or [listing_item.get("thumbnail")] if listing_item.get("thumbnail") else vehicle.get("imagens")
                     vehicles.append(vehicle)
             except Exception as exc:  # pragma: no cover - defensive path
-                logger.exception("Erro ao processar anúncio %s: %s", link, exc)
+                logger.exception("Erro ao processar anúncio %s: %s", listing_item.get("url"), exc)
 
         return [vehicle for vehicle in vehicles if vehicle.get("nome")]
 
@@ -48,7 +54,7 @@ class VehicleScraper:
 
         absolute_url = urljoin(self.base_url, detail_url)
         try:
-            response = requests.get(absolute_url, timeout=self.timeout, headers=self._headers())
+            response = self._request(absolute_url)
             response.raise_for_status()
         except requests.RequestException as exc:
             logger.exception("Erro ao acessar anúncio %s: %s", absolute_url, exc)
@@ -91,13 +97,37 @@ class VehicleScraper:
             "placa": placa,
         }
 
-    def _extract_listing_links(self, soup: BeautifulSoup) -> List[str]:
-        links = []
-        for anchor in soup.find_all("a", href=True):
-            href = anchor.get("href", "")
-            if "pag=veiculo" in href or "veiculo" in href and "id=" in href:
-                links.append(href)
-        return self._dedupe_links(links)
+    def _extract_listing_items(self, soup: BeautifulSoup) -> List[Dict[str, Any]]:
+        items = []
+        for item in soup.select("div.item"):
+            link_element = item.select_one("a.veiculo")
+            if not link_element:
+                continue
+            href = link_element.get("href", "")
+            if not href:
+                continue
+
+            thumbnail = None
+            image_element = item.select_one("img")
+            if image_element:
+                thumbnail = image_element.get("src") or image_element.get("data-src")
+
+            title = self._clean_text(item.get_text(" ", strip=True))
+            year = self._extract_year(title) if title else None
+
+            parsed_url = urlparse(href)
+            query_params = parse_qs(parsed_url.query)
+            external_id = query_params.get("id", [None])[0]
+
+            items.append({
+                "external_id": external_id,
+                "title": title,
+                "year": year,
+                "thumbnail": self._normalize_image_url(thumbnail) if thumbnail else None,
+                "url": href,
+            })
+
+        return self._dedupe_listing_items(items)
 
     @staticmethod
     def _find_text(container, selectors):
@@ -193,9 +223,16 @@ class VehicleScraper:
     @staticmethod
     def _extract_brand_from_text(soup: BeautifulSoup, fallback=None):
         text = soup.get_text(" ", strip=True)
+        if fallback:
+            normalized_fallback = fallback.strip()
+            if normalized_fallback and normalized_fallback.lower() not in {"km", "marca"}:
+                return normalized_fallback
+
         match = re.search(r"Marca\s*[:\-]?\s*([A-Za-zÀ-ÖØ-öø-ÿ]+)", text, re.IGNORECASE)
         if match:
-            return match.group(1).strip()
+            candidate = match.group(1).strip()
+            if candidate and candidate.lower() not in {"km", "marca"}:
+                return candidate
         return fallback
 
     @staticmethod
@@ -309,6 +346,34 @@ class VehicleScraper:
                 seen.add(link)
                 result.append(link)
         return result
+
+    @staticmethod
+    def _dedupe_listing_items(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        seen = set()
+        result = []
+        for item in items:
+            key = item.get("url") or item.get("external_id")
+            if key and key not in seen:
+                seen.add(key)
+                result.append(item)
+        return result
+
+    def _request(self, url: str, retries: int = 3) -> requests.Response:
+        last_error = None
+        for attempt in range(retries):
+            try:
+                response = self.session.get(url, timeout=self.timeout, headers=self._headers())
+                response.raise_for_status()
+                return response
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt < retries - 1:
+                    logger.warning("Falha na requisição %s (tentativa %s/%s): %s", url, attempt + 1, retries, exc)
+                    time.sleep(1)
+                    continue
+                logger.exception("Erro final na requisição %s: %s", url, exc)
+                raise
+        raise last_error
 
     @staticmethod
     def _headers() -> Dict[str, str]:
