@@ -64,37 +64,30 @@ class VehicleScraper:
 
     def _parse_detail_page(self, html: str, detail_url: str) -> Dict[str, Any]:
         soup = BeautifulSoup(html, "html.parser")
-        title = self._extract_title(soup)
-        price_text = self._clean_text(self._find_text(soup, [".price", ".preco", ".valor", "strong"])) or self._extract_price_from_text(soup)
-        brand_text = self._clean_text(self._find_text(soup, [".marca", ".brand", ".fabricante"])) or self._extract_brand_from_details(soup)
-        description = self._clean_text(self._find_text(soup, [".description", ".descricao", "p"]))
-        images = [self._normalize_image_url(img.get("src")) for img in soup.find_all("img") if img.get("src") and not self._is_brand_image(img.get("src"))]
-        images = [img for img in images if img and self._is_vehicle_image(img)]
-        images = self._dedupe_images(images)
-
-        placa = self._extract_plate(soup)
-        cor = self._extract_color(soup)
-        marca = self._normalize_brand(self._extract_brand_from_text(soup, brand_text))
-        ano = self._extract_year(title or description)
+        metadata = self._extract_metadata(soup, detail_url)
+        specifications = self._extract_specifications(soup)
+        description = self._extract_description(soup)
+        optional_items = self._extract_optionals(soup)
+        images = self._extract_images(soup)
 
         return {
-            "external_id": detail_url,
+            "external_id": metadata.get("external_id"),
             "source": "carrodopovo",
-            "nome": title or "Veículo sem nome",
-            "marca": marca,
-            "versao": self._extract_version(title or description),
-            "ano": ano,
-            "km": self._extract_km(description),
-            "preco": self._parse_price(price_text),
-            "combustivel": self._extract_value(soup, ["combustível", "combustivel"]),
-            "cambio": self._extract_value(soup, ["câmbio", "cambio"]),
-            "cor": cor,
+            "nome": metadata.get("title") or "Veículo sem nome",
+            "marca": self._normalize_brand(specifications.get("marca")),
+            "versao": metadata.get("title") or description,
+            "ano": specifications.get("ano"),
+            "km": specifications.get("km"),
+            "preco": specifications.get("preco"),
+            "combustivel": specifications.get("combustivel"),
+            "cambio": specifications.get("cambio"),
+            "cor": specifications.get("cor"),
             "imagens": images,
             "descricao": description,
-            "opcionais": self._extract_options(soup),
+            "opcionais": optional_items,
             "link": detail_url,
             "destaque": False,
-            "placa": placa,
+            "placa": specifications.get("placa"),
         }
 
     def _extract_listing_items(self, soup: BeautifulSoup) -> List[Dict[str, Any]]:
@@ -136,6 +129,98 @@ class VehicleScraper:
             if element and element.get_text(strip=True):
                 return element.get_text(strip=True)
         return None
+
+    def _extract_metadata(self, soup: BeautifulSoup, detail_url: str) -> Dict[str, Any]:
+        meta_title = soup.select_one('meta[property="og:title"]')
+        meta_image = soup.select_one('meta[property="og:image"]')
+        meta_url = soup.select_one('meta[property="og:url"]')
+
+        title = self._clean_text(meta_title.get("content")) if meta_title and meta_title.get("content") else self._extract_title(soup)
+        image = self._clean_text(meta_image.get("content")) if meta_image and meta_image.get("content") else None
+        url = self._clean_text(meta_url.get("content")) if meta_url and meta_url.get("content") else detail_url
+
+        parsed_url = urlparse(url)
+        query_params = parse_qs(parsed_url.query)
+        external_id = query_params.get("id", [None])[0]
+
+        return {
+            "title": title,
+            "image": self._normalize_image_url(image) if image else None,
+            "url": url,
+            "external_id": external_id,
+        }
+
+    def _extract_specifications(self, soup: BeautifulSoup) -> Dict[str, Any]:
+        details_container = soup.select_one('.detalhes')
+        details_text = details_container.get_text(" ", strip=True) if details_container else soup.get_text(" ", strip=True)
+
+        price_text = self._extract_price_from_details(details_container or soup)
+        brand_text = self._extract_brand_from_details(details_container or soup)
+        placa = self._extract_plate(details_text)
+        cor = self._extract_color(details_text)
+        marca = self._extract_brand_from_text(soup, brand_text)
+        ano = self._extract_year(details_text)
+        km = self._extract_km(details_text)
+        combustivel = self._extract_spec_value(details_container or soup, "Combustível")
+        cambio = self._extract_spec_value(details_container or soup, "Câmbio")
+
+        return {
+            "marca": marca,
+            "ano": ano,
+            "km": km,
+            "preco": self._parse_price(price_text),
+            "combustivel": combustivel,
+            "cambio": cambio,
+            "cor": cor,
+            "placa": placa,
+        }
+
+    def _extract_description(self, soup: BeautifulSoup) -> str:
+        details_container = soup.select_one('.detalhes')
+        if details_container:
+            observations = details_container.find(string=re.compile(r"Observações", re.I))
+            if observations and observations.parent:
+                block = observations.parent.parent if observations.parent.parent else observations.parent
+                return self._clean_text(block.get_text(" ", strip=True))
+
+        description = self._clean_text(self._find_text(soup, [".description", ".descricao", "p"]))
+        return description or self._clean_text(soup.get_text(" ", strip=True))
+
+    def _extract_optionals(self, soup: BeautifulSoup) -> List[str]:
+        details_container = soup.select_one('.detalhes')
+        if details_container:
+            optional_heading = None
+            for node in details_container.find_all(['div', 'span']):
+                text = self._clean_text(node.get_text(" ", strip=True))
+                if text and text.lower() == "opcionais":
+                    optional_heading = node
+                    break
+            if optional_heading and optional_heading.parent:
+                parent = optional_heading.parent
+                return [self._clean_text(item.get_text(" ", strip=True)) for item in parent.find_all(['div', 'span']) if self._clean_text(item.get_text(" ", strip=True))]
+
+        return self._extract_options(soup)
+
+    def _extract_images(self, soup: BeautifulSoup) -> List[str]:
+        gallery = soup.select_one('.galeria_detalhes')
+        if gallery:
+            anchors = gallery.select('a[href]')
+            images = []
+            for anchor in anchors:
+                href = anchor.get("href")
+                if href and "bigimage" in href.lower():
+                    images.append(self._normalize_image_url(href))
+            if images:
+                return self._dedupe_images(images)
+
+        images = []
+        for img in soup.select('img'):
+            src = img.get("src") or img.get("data-src")
+            if src and not self._is_brand_image(src):
+                normalized = self._normalize_image_url(src)
+                if normalized and self._is_vehicle_image(normalized):
+                    images.append(normalized)
+        return self._dedupe_images(images)
 
     @staticmethod
     def _find_link(container):
@@ -268,28 +353,44 @@ class VehicleScraper:
         return None
 
     @staticmethod
-    def _extract_plate(soup: BeautifulSoup):
+    def _extract_price_from_details(soup: BeautifulSoup):
+        for element in soup.select('.detalhes .row .center'):
+            text = element.get_text(" ", strip=True)
+            if text and "R$" in text:
+                return text
+
         text = soup.get_text(" ", strip=True)
+        match = re.search(r"R\$\s*([\d\.]+(?:,\d{1,2})?)", text)
+        if match:
+            return match.group(0)
+        return None
+
+    @staticmethod
+    def _extract_spec_value(soup: BeautifulSoup, label: str):
+        for element in soup.select('.detalhes .row .center'):
+            text = element.get_text(" ", strip=True)
+            if text and text.lower() == label.lower():
+                next_sibling = element.find_next_sibling()
+                if next_sibling:
+                    value = next_sibling.get_text(" ", strip=True)
+                    if value:
+                        return value
+        return None
+
+    @staticmethod
+    def _extract_plate(text: str):
         match = re.search(r"\b([A-Za-z]{3}(?:-?\d{4}|\d[A-Za-z0-9]\d{2}))\b", text, re.IGNORECASE)
         if match:
             return match.group(1).upper()
         return None
 
     @staticmethod
-    def _extract_color(soup: BeautifulSoup):
-        text = soup.get_text(" ", strip=True)
+    def _extract_color(text: str):
         color_names = {
             "preto", "preta", "branco", "branca", "cinza", "vermelho", "vermelha", "azul", "verde",
             "prata", "grafite", "bege", "marrom", "amarelo", "laranja", "roxo", "rosa", "dourado", "bronze",
             "vinho", "chumbo"
         }
-
-        label_match = re.search(r"Cor\s*[:\-]?\s*(.+)", text, re.IGNORECASE)
-        if label_match:
-            candidates = re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ]+", label_match.group(1))
-            for candidate in candidates:
-                if candidate.lower() in color_names:
-                    return candidate.strip().capitalize()
 
         for candidate in re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ]+", text):
             if candidate.lower() in color_names:
