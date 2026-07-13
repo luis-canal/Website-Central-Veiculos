@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
   --vermelho: #d92b2b;
@@ -15,13 +15,16 @@
   --texto-suave: #777;
   --verde-whats: #25D366;
   --verde-whats-hover: #1db954;
+  --fonte: 'Montserrat', sans-serif;
+  --fonte-bold: 'Montserrat', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font);
+  font-style: italic;
   background-color: var(--cinza-fundo);
   color: var(--texto-escuro);
   min-height: 100vh;
@@ -104,7 +107,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   text-decoration: none;
   padding: 14px 28px;
   border-radius: 4px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1.05rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -147,7 +150,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .stat { background: #1e1e1e; padding: 22px 30px; text-align: center; min-width: 160px; }
 
 .stat-numero {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 2.4rem;
   font-weight: 800;
   color: var(--vermelho);
@@ -211,7 +214,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   border: none;
   padding: 16px 24px;
   border-radius: 6px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -228,7 +231,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .sobre-texto h2 {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 2.8rem;
   color: var(--preto);
   margin: 16px 0;
@@ -249,7 +252,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .diferencial-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
@@ -351,7 +354,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .secao-titulo {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 2.2rem;
   font-weight: 800;
   letter-spacing: 1px;
@@ -367,7 +370,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .secao-link {
   color: var(--vermelho);
   text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1rem;
   font-weight: 700;
   display: flex;
@@ -420,7 +423,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   top: 12px; left: 12px;
   background: var(--vermelho);
   color: #fff;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -432,7 +435,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .card-body { padding: 18px 20px 20px; }
 
 .card-nome {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -454,7 +457,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .card-preco {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--vermelho);
@@ -462,7 +465,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .card-preco small {
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--fonte);
   font-size: 0.72rem;
   color: var(--texto-suave);
   font-weight: 400;
@@ -475,7 +478,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   border: 1px solid var(--cinza-borda);
   padding: 8px 14px;
   border-radius: 4px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -493,7 +496,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .estoque-hero h1 {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 3rem;
   font-weight: 800;
   letter-spacing: 2px;
@@ -513,7 +516,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   color: #aaa;
   padding: 7px 18px;
   border-radius: 2px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -545,7 +548,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .carro-sidebar { position: sticky; top: 90px; }
 
 .carro-marca {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 0.8rem;
   color: var(--vermelho);
   text-transform: uppercase;
@@ -555,7 +558,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .carro-nome {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 2.8rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -575,7 +578,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .carro-preco-label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
 
 .carro-preco-valor {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 2.8rem;
   font-weight: 800;
   color: var(--vermelho);
@@ -597,7 +600,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .spec { background: var(--branco); padding: 14px 16px; }
 
 .spec-label {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 0.7rem;
   color: var(--texto-suave);
   text-transform: uppercase;
@@ -617,7 +620,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   text-decoration: none;
   padding: 16px;
   border-radius: 6px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -652,7 +655,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .carro-descricao { margin-top: 30px; padding-top: 28px; border-top: 1px solid var(--cinza-borda); }
 
 .carro-descricao h3 {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--fonte-bold);
   font-size: 1.3rem;
   font-weight: 700;
   text-transform: uppercase;
