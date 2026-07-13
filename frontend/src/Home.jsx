@@ -26,14 +26,6 @@ function Home() {
         <HeroCarousel images={loja.heroImagens} />
       </section>
 
-      <section className="secao sobre">
-        <div className="sobre-texto">
-          <p className="secao-subtitulo">Sobre a empresa</p>
-          <h2>{loja.nome} em David Canabarro</h2>
-          <p>{loja.sobre}</p>
-        </div>
-      </section>
-
       <section className="secao destaque-veiculos">
         <div className="secao-header">
           <div>
@@ -75,6 +67,14 @@ function Home() {
           {loja.marcas.map((marca) => (
             <span key={marca} className="marca-item">{marca}</span>
           ))}
+        </div>
+      </section>
+
+      <section className="secao sobre">
+        <div className="sobre-texto">
+          <p className="secao-subtitulo">Sobre a empresa</p>
+          <h2>{loja.nome} em David Canabarro</h2>
+          <p>{loja.sobre}</p>
         </div>
       </section>
 
