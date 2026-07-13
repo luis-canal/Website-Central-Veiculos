@@ -72,8 +72,7 @@ function Home() {
 
       <section className="secao sobre">
         <div className="sobre-texto">
-          <p className="secao-subtitulo">Sobre a empresa</p>
-          <h2>{loja.nome} em David Canabarro</h2>
+          <h2>Sobre a empresa</h2>
           <p>{loja.sobre}</p>
         </div>
       </section>
