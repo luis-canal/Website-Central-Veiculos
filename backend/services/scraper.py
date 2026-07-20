@@ -209,12 +209,12 @@ class VehicleScraper:
         gallery = soup.select_one('.galeria_detalhes')
         if gallery:
             anchors = gallery.select('a[href]')
-            images = []
+            vehicle_images = []
             for anchor in anchors:
                 href = anchor.get("href")
                 if href and "bigimage" in href.lower():
-                    images.append(self._normalize_image_url(href))
-            if images:
+                    vehicle_images.append(self._normalize_image_url(href))
+            if vehicle_images:
                 return self._dedupe_images(images)
 
         images = []
