@@ -7,7 +7,6 @@ from urllib.parse import urljoin, parse_qs, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from ..config import SCRAPER_TIMEOUT, SCRAPER_URL, SCRAPER_CARD_SELECTOR
 
 logger = logging.getLogger(__name__)
 
