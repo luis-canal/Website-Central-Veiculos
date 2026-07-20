@@ -7,6 +7,11 @@ from urllib.parse import urljoin, parse_qs, urlparse
 import requests
 from bs4 import BeautifulSoup
 
+from ..config import (
+    SCRAPER_TIMEOUT,
+    SCRAPER_URL,
+    SCRAPER_CARD_SELECTOR,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -91,7 +96,7 @@ class VehicleScraper:
 
     def _extract_listing_items(self, soup: BeautifulSoup) -> List[Dict[str, Any]]:
         items = []
-        for item in soup.select("div.item"):
+        for item in soup.select(SCRAPER_CARD_SELECTOR):
             link_element = item.select_one("a.veiculo")
             if not link_element:
                 continue
