@@ -112,9 +112,7 @@ class VehicleScraper:
             title = self._clean_text(item.get_text(" ", strip=True))
             year = self._extract_year(title) if title else None
 
-            parsed_url = urlparse(href)
-            query_params = parse_qs(parsed_url.query)
-            external_id = query_params.get("id", [None])[0]
+            external_id = self._extract_external_id(href)
 
             items.append({
                 "external_id": external_id,
@@ -134,6 +132,12 @@ class VehicleScraper:
                 return element.get_text(strip=True)
         return None
 
+    @staticmethod
+    def _extract_external_id(url: str):
+    parsed = urlparse(url)
+    query = parse_qs(parsed.query)
+    return query.get("id", [None])[0]
+
     def _extract_metadata(self, soup: BeautifulSoup, detail_url: str) -> Dict[str, Any]:
         meta_title = soup.select_one('meta[property="og:title"]')
         meta_image = soup.select_one('meta[property="og:image"]')
@@ -143,9 +147,7 @@ class VehicleScraper:
         image = self._clean_text(meta_image.get("content")) if meta_image and meta_image.get("content") else None
         url = self._clean_text(meta_url.get("content")) if meta_url and meta_url.get("content") else detail_url
 
-        parsed_url = urlparse(url)
-        query_params = parse_qs(parsed_url.query)
-        external_id = query_params.get("id", [None])[0]
+        external_id = self._extract_external_id(url)
 
         return {
             "title": title,
