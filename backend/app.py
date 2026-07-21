@@ -43,10 +43,15 @@ def create_app():
 
     @app.route("/api/sync")
     def trigger_sync():
-        scraper = VehicleScraper()
-        service = VehicleSyncService(session_factory=SessionLocal, scraper=scraper)
-        result = service.sync()
-        return jsonify({"status": "ok", "result": result})
+        try:
+            result = sync_service.sync()
+            return jsonify({"status": "ok", "result": result})
+        except Exception:
+            logger.exception("Vehicle synchronization failed")
+            return jsonify({
+                "status": "error",
+                "message": "Synchronization failed"
+            }), 500
 
     @app.route("/api/status")
     def status():
