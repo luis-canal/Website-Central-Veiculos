@@ -126,7 +126,7 @@ class CarroDoPovoScraper:
 
                 try:
                     idx = textos.index("Ano Modelo")
-                    dados["ano_modelo"] = textos[idx + 4]
+                    dados["ano_modelo"] = textos[idx + 3]
                 except:
                     pass
 
