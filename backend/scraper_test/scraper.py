@@ -177,7 +177,7 @@ class CarroDoPovoScraper:
     # ------------------------------------------------------------------
     # Raspa todos os veículos da loja
     # ------------------------------------------------------------------
-    def scrape_store(self):
+    def scrape(self):
 
         vehicles = []
 
