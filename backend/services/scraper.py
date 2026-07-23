@@ -134,9 +134,9 @@ class VehicleScraper:
 
     @staticmethod
     def _extract_external_id(url: str):
-    parsed = urlparse(url)
-    query = parse_qs(parsed.query)
-    return query.get("id", [None])[0]
+        parsed = urlparse(url)
+        query = parse_qs(parsed.query)
+        return query.get("id", [None])[0]
 
     def _extract_metadata(self, soup: BeautifulSoup, detail_url: str) -> Dict[str, Any]:
         meta_title = soup.select_one('meta[property="og:title"]')
