@@ -1,16 +1,18 @@
 import logging
 import os
 
-from flask import Flask, jsonify, send_from_directory
-from flask_cors import CORS
 from dotenv import load_dotenv
 
-from backend.config import BASE_DIR, DATABASE_URL, ENABLE_SCHEDULER, SCHEDULER_INTERVAL_MINUTES
+load_dotenv()
+
+from flask import Flask, jsonify, send_from_directory
+from flask_cors import CORS
+
+from backend.config import PROJECT_DIR, DATABASE_URL, ENABLE_SCHEDULER, SCHEDULER_INTERVAL_MINUTES
 from backend.database import Base, get_session_factory
 from backend.models import Vehicle
 from backend.services import VehicleScraper, VehicleSyncService
 
-load_dotenv()
 
 logging.basicConfig(level=getattr(logging, os.getenv("LOG_LEVEL", "INFO")), format="%(asctime)s %(levelname)s %(name)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -70,18 +72,18 @@ def create_app():
 
     @app.route("/assets/<path:filename>")
     def serve_assets(filename):
-        return send_from_directory(os.path.join(BASE_DIR, "frontend", "dist", "assets"), filename)
+        return send_from_directory(os.path.join(PROJECT_DIR, "frontend", "dist", "assets"), filename)
 
     @app.route("/<path:filename>")
     def serve_static(filename):
-        file_path = os.path.join(BASE_DIR, "frontend", "dist", filename)
+        file_path = os.path.join(PROJECT_DIR, "frontend", "dist", filename)
         if os.path.exists(file_path):
-            return send_from_directory(os.path.join(BASE_DIR, "frontend", "dist"), filename)
-        return send_from_directory(os.path.join(BASE_DIR, "frontend", "dist"), "index.html")
+            return send_from_directory(os.path.join(PROJECT_DIR, "frontend", "dist"), filename)
+        return send_from_directory(os.path.join(PROJECT_DIR, "frontend", "dist"), "index.html")
 
     @app.route("/")
     def serve_index():
-        return send_from_directory(os.path.join(BASE_DIR, "frontend", "dist"), "index.html")
+        return send_from_directory(os.path.join(PROJECT_DIR, "frontend", "dist"), "index.html")
 
     if ENABLE_SCHEDULER:
         from apscheduler.schedulers.background import BackgroundScheduler

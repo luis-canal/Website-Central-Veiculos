@@ -1,10 +1,12 @@
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+BACKEND_DIR = Path(__file__).resolve().parent
 
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR / 'vehicles.db'}")
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BACKEND_DIR / 'vehicles.db'}")
 SCRAPER_URL = os.getenv("SCRAPER_URL", "")
+print("SCRAPER_URL:", SCRAPER_URL)
 SCRAPER_TIMEOUT = int(os.getenv("SCRAPER_TIMEOUT", "20"))
 SCRAPER_CARD_SELECTOR = os.getenv("SCRAPER_CARD_SELECTOR", "article, .vehicle-card, .car-card")
 ENABLE_SCHEDULER = os.getenv("ENABLE_SCHEDULER", "false").lower() == "true"
