@@ -5,7 +5,7 @@ from typing import Dict, Any
 
 from sqlalchemy.orm import Session
 
-from ..models import Vehicle
+from backend.models import Vehicle
 
 logger = logging.getLogger(__name__)
 

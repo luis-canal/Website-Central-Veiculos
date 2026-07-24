@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timezone
 from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text
 
-from .database import Base
+from backend.database import Base
 
 
 class Vehicle(Base):

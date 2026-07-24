@@ -5,7 +5,7 @@ from urllib.parse import urljoin, parse_qs, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from ..config import (
+from backend.config import (
     SCRAPER_TIMEOUT,
     SCRAPER_URL
 )

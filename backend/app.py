@@ -5,10 +5,10 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-from .config import BASE_DIR, DATABASE_URL, ENABLE_SCHEDULER, SCHEDULER_INTERVAL_MINUTES
-from .database import Base, get_session_factory
-from .models import Vehicle
-from .services import VehicleScraper, VehicleSyncService
+from backend.config import BASE_DIR, DATABASE_URL, ENABLE_SCHEDULER, SCHEDULER_INTERVAL_MINUTES
+from backend.database import Base, get_session_factory
+from backend.models import Vehicle
+from backend.services import VehicleScraper, VehicleSyncService
 
 load_dotenv()
 
