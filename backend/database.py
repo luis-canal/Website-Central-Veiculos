@@ -3,6 +3,9 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 from backend.config import DATABASE_URL
 
+
+print("DATABASE USADO PELO SQLALCHEMY:", DATABASE_URL)
+
 Base = declarative_base()
 _ENGINE_CACHE = {}
 
