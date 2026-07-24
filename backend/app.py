@@ -23,6 +23,13 @@ def create_app():
     SessionLocal, engine = get_session_factory()
     Base.metadata.create_all(engine)
 
+    scraper = VehicleScraper()
+
+    sync_service = VehicleSyncService(
+        session_factory=SessionLocal,
+        scraper=scraper,
+    )
+
     @app.route("/health")
     def health_check():
         return jsonify({"status": "ok", "database": DATABASE_URL})
