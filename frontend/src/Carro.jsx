@@ -33,15 +33,17 @@ function Carro() {
           <h1 className="carro-nome">{carro.nome}</h1>
           <div className="carro-preco-bloco">
             <div className="carro-preco-label">Preço</div>
-            <div className="carro-preco-valor">R$ {carro.preco}</div>
+            <div className="carro-preco-valor">
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(carro.preco)}
+            </div>
           </div>
           <div className="carro-specs">
             <div className="spec">
-              <span className="spec-label">Ano:</span>
+              <span className="spec-label">Ano/Modelo:</span>
               <span className="spec-valor">{carro.ano_modelo}</span>
-            </div>
-            <div className="spec">
-              <span className="spec-label">Quilometragem:</span>
             </div>
           </div>
           <a href="https://wa.me/5554999999999" className="btn-whatsapp" target="_blank" rel="noreferrer">
@@ -54,7 +56,7 @@ function Carro() {
       </div>
 
       <section className="carro-descricao">
-        <h3>Descrição</h3>
+        <h3>Observações</h3>
         <p>{carro.observacoes}</p>
       </section>
     </main>
