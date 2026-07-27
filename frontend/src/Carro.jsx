@@ -22,7 +22,7 @@ function Carro() {
         <div className="carro-galeria">
           {imagens.length > 0 ? (
             imagens.map((img, index) => (
-              <img key={index} src={`/${img}`} alt={`${carro.nome} - ${index + 1}`} style={{ width: '100%', height: 'auto', marginBottom: '10px' }} />
+              <img key={index} src={img} alt={`${carro.nome} - ${index + 1}`} style={{ width: '100%', height: 'auto', marginBottom: '10px' }} />
             ))
           ) : (
             <div className="img-placeholder">🚗</div>
@@ -38,11 +38,10 @@ function Carro() {
           <div className="carro-specs">
             <div className="spec">
               <span className="spec-label">Ano:</span>
-              <span className="spec-valor">{carro.ano}</span>
+              <span className="spec-valor">{carro.ano_modelo}</span>
             </div>
             <div className="spec">
               <span className="spec-label">Quilometragem:</span>
-              <span className="spec-valor">{carro.km} km</span>
             </div>
           </div>
           <a href="https://wa.me/5554999999999" className="btn-whatsapp" target="_blank" rel="noreferrer">
@@ -56,7 +55,7 @@ function Carro() {
 
       <section className="carro-descricao">
         <h3>Descrição</h3>
-        <p>{carro.descricao}</p>
+        <p>{carro.observacoes}</p>
       </section>
     </main>
   );
