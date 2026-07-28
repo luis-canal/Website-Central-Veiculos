@@ -512,17 +512,23 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   border: 1px solid var(--cinza-borda);
   border-radius: 6px;
   overflow: hidden;
-  transition: all 0.25s;
+  transition:
+        transform .35s,
+        box-shadow .35s,
+        border-color .35s;
   text-decoration: none;
   color: inherit;
   display: block;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.card:hover {
-  border-color: var(--vermelho);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,.12);
+
 }
 
 .card:hover img{
@@ -553,16 +559,17 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   border-radius: 2px;
 }
 
-.card-body { padding: 18px 20px 20px; }
+.card-body { padding: 22px; }
 
 .card-nome {
   font-family: var(--fonte-bold);
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight:600;
+  line-height:1.35;
   letter-spacing: 0.5px;
-  text-transform: uppercase;
   margin-bottom: 8px;
   color: var(--preto);
+  text-align: left;
 }
 
 .card-detalhes { display: flex; gap: 14px; margin-bottom: 14px; }
@@ -571,18 +578,32 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .card-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
   padding-top: 14px;
   border-top: 1px solid var(--cinza-borda);
 }
 
 .card-preco {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
   font-family: var(--fonte-bold);
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--vermelho);
   line-height: 1;
+}
+
+.card-preco small {
+  font-family: var(--fonte);
+  font-size: .78rem;
+  color: var(--texto-suave);
+  font-weight: 500;
+  letter-spacing: .3px;
+  text-align: left;
 }
 
 .card-preco small {
@@ -593,21 +614,40 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   display: block;
 }
 
-.card-btn {
-  background: var(--cinza-fundo);
-  color: var(--texto-medio);
-  border: 1px solid var(--cinza-borda);
-  padding: 8px 14px;
-  border-radius: 4px;
-  font-family: var(--fonte-bold);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.2s;
+.card-btn{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 50px;
+    margin-top: 16px;
+
+    background: var(--cinza-escuro);
+    border-radius: 6px;
+
+    color: var(--branco);
+    font-size: .95rem;
+    font-weight: 600;
+
+    transition: background .25s;
 }
 
-.card:hover .card-btn { background: var(--vermelho); color: #fff; border-color: var(--vermelho); }
+.card-btn::after{
+    content: "→";
+    position: absolute;
+    right: 18px;
+
+    font-size: 1.4rem;     
+    font-weight: 700;
+    line-height: 1;
+}
+
+.card:hover .card-btn{
+    background: var(--vermelho-claro);
+}
 
 /* ─── ESTOQUE HERO ─── */
 .estoque-hero {

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import ShareButton from './ShareButton';
 import { formatPrice } from '../utils';
 
 function VehicleCard({ carro }) {
@@ -38,12 +37,6 @@ function VehicleCard({ carro }) {
         </div>
       </Link>
 
-      <div className="card-share">
-        <ShareButton
-          url={`/carro/${carro.id}`}
-          label="Compartilhar"
-        />
-      </div>
     </article>
   );
 }
