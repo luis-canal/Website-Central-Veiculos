@@ -21,6 +21,9 @@ function HeroCarousel({ images = [] }) {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const [count, setCount] = useState(0);
+  const [pulse, setPulse] = useState(false);
+
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -44,6 +47,46 @@ function HeroCarousel({ images = [] }) {
     return <div className="hero-bg" />;
   }
 
+  useEffect(() => {
+    if (selectedIndex !== 0) {
+      setCount(0);
+      setPulse(false);
+      return;
+    }
+
+    const target = 500;
+    const duration = 1800;
+    const start = performance.now();
+
+    let animationFrame;
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function animate(now) {
+      const progress = Math.min((now - start) / duration, 1);
+
+      const eased = easeOutCubic(progress);
+
+      setCount(Math.round(target * eased));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+        setPulse(true);
+
+        setTimeout(() => setPulse(false), 300);
+      }
+    }
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+
+  }, [selectedIndex]);
+
   return (
     <div className="hero-embla" ref={emblaRef}>
       <div className="hero-track">
@@ -54,6 +97,15 @@ function HeroCarousel({ images = [] }) {
               alt={`Banner ${index + 1}`}
               className="hero-img"
             />
+            {index === 0 && (
+              <div
+                className={`hero-counter ${
+                  pulse ? 'hero-counter-pulse' : ''
+                }`}
+              >
+                {count}
+              </div>
+            )}
           </div>
         ))}
       </div>
