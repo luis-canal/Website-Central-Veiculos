@@ -195,7 +195,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 @media (max-width:768px){
 .hero-counter{
-    font-size:56px;
+    font-size:180px;
 }
 }
 
