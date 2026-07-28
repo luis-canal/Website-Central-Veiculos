@@ -1,96 +1,88 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import { useCallback, useEffect, useState } from 'react';
 
-const INTERVAL = 7000;
-const TRANSITION = 800;
+function HeroCarousel({ images = [] }) {
+  const autoplay = Autoplay({
+    delay: 7000,
+    stopOnInteraction: false,
+    stopOnMouseEnter: true,
+  });
 
-function HeroCarousel({ images }) {
-  const slides = useMemo(() => images || [], [images]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      duration: 30,
+      dragFree: false,
+      align: 'start',
+    },
+    [autoplay]
+  );
 
-  const carouselSlides = useMemo(() => {
-    if (slides.length === 0) return [];
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-    return [
-      slides[slides.length - 1],
-      ...slides,
-      slides[0],
-    ];
-  }, [slides]);
-
-  const [index, setIndex] = useState(1);
-  const [transition, setTransition] = useState(true);
-
-  const timerRef = useRef();
-
-  useEffect(() => {
-    if (slides.length <= 1) return;
-
-    timerRef.current = setInterval(() => {
-      setIndex((prev) => prev + 1);
-    }, INTERVAL);
-
-    return () => clearInterval(timerRef.current);
-  }, [slides.length]);
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   useEffect(() => {
-    if (index !== slides.length + 1) return;
+    if (!emblaApi) return;
 
-    const timeout = setTimeout(() => {
-      setTransition(false);
-      setIndex(1);
-    }, TRANSITION);
+    onSelect();
 
-    return () => clearTimeout(timeout);
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
 
-  }, [index, slides.length]);
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
-  useEffect(() => {
-    if (index !== 0) return;
-
-    const timeout = setTimeout(() => {
-      setTransition(false);
-      setIndex(slides.length);
-    }, TRANSITION);
-
-    return () => clearTimeout(timeout);
-
-  }, [index, slides.length]);
-
-  useEffect(() => {
-    if (transition) return;
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setTransition(true);
-      });
-    });
-  }, [transition]);
-
-  if (!slides.length) {
+  if (!images.length) {
     return <div className="hero-bg" />;
   }
 
   return (
-    <div className="hero-bg">
-
-      <div
-        className="hero-track"
-        style={{
-          transform: `translateX(-${index * 100}%)`,
-          transition: transition
-            ? `transform ${TRANSITION}ms cubic-bezier(.77,0,.175,1)`
-            : 'none',
-        }}
-      >
-        {carouselSlides.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            className="hero-img"
-            alt={`Banner ${i}`}
-          />
+    <div className="hero-embla" ref={emblaRef}>
+      <div className="hero-track">
+        {images.map((img, index) => (
+          <div className="hero-slide" key={index}>
+            <img
+              src={img}
+              alt={`Banner ${index + 1}`}
+              className="hero-img"
+            />
+          </div>
         ))}
       </div>
 
+      <button
+        className="hero-arrow hero-arrow-left"
+        onClick={() => emblaApi?.scrollPrev()}
+      >
+        ❮
+      </button>
+
+      <button
+        className="hero-arrow hero-arrow-right"
+        onClick={() => emblaApi?.scrollNext()}
+      >
+        ❯
+      </button>
+
+      <div className="hero-dots">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`hero-dot ${
+              index === selectedIndex ? 'active' : ''
+            }`}
+            onClick={() => emblaApi?.scrollTo(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
