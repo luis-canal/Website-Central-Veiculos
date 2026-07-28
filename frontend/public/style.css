@@ -76,12 +76,10 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 /* ─── HERO ─── */
 .hero-home {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 1920 / 680;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 580px;
+    overflow: hidden;
 }
 
 .hero-bg {
