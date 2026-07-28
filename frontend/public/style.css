@@ -390,6 +390,12 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   gap: 20px;
 }
 
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .card {
   background: var(--branco);
   border: 1px solid var(--cinza-borda);
@@ -408,10 +414,14 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   box-shadow: 0 12px 36px rgba(0,0,0,0.12);
 }
 
+.card:hover img{
+    transform: scale(1.03);
+}
+
 .card-img-wrapper {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/11;
   background: var(--cinza-fundo);
 }
 
