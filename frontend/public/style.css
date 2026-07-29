@@ -588,6 +588,26 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   color: var(--texto-suave); 
 }
 
+.brand-logo-container{
+    width:28px;
+    height:28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+}
+
+.brand-logo{
+    width:80%;
+    height:80%;
+
+    object-fit:contain;
+    object-position:center;
+
+    display:block;
+}
 
 .brand-logo{
     width:22px;

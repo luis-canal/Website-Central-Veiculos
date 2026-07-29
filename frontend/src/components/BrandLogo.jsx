@@ -64,11 +64,14 @@ export default function BrandLogo({ marca }) {
     return null;
   }
 
-  return (
-    <img
-      src={logo}
-      alt={marca}
-      className="brand-logo"
-    />
-  );
+    return (
+    <span className="brand-logo-container">
+        <img
+        src={logo}
+        alt={marca}
+        className="brand-logo"
+        loading="lazy"
+        />
+    </span>
+    );
 }
