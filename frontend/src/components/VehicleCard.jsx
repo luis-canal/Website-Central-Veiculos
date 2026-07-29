@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils';
+import { ArrowRight } from 'lucide-react';
 
 function VehicleCard({ carro }) {
   return (
@@ -34,6 +35,7 @@ function VehicleCard({ carro }) {
 
             <span className="card-btn">
               Ver detalhes
+              <ArrowRight size={20} strokeWidth={1.9} />
             </span>
           </div>
         </div>

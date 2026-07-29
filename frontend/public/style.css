@@ -641,14 +641,9 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
     transition: background .25s;
 }
 
-.card-btn::after{
-    content: "→";
+.card-btn svg{
     position: absolute;
     right: 18px;
-
-    font-size: 1.4rem;     
-    font-weight: 700;
-    line-height: 1;
 }
 
 .card:hover .card-btn{
