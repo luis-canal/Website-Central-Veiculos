@@ -523,6 +523,214 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   padding: 80px 40px;
 }
 
+/* ===========================
+   VEHICLE CAROUSEL
+=========================== */
+
+.vehicle-carousel{
+    position:relative;
+    width:100%;
+}
+
+.vehicle-carousel-viewport{
+    overflow:hidden;
+
+    /*
+      Espaço nas laterais para aparecer
+      parte do card anterior e do próximo.
+    */
+    padding:0 4%;
+}
+
+.vehicle-carousel-container{
+    display:flex;
+}
+
+.vehicle-carousel-slide{
+    flex:0 0 23%;
+    min-width:0;
+    padding:0 12px;
+    box-sizing:border-box;
+}
+
+/* Desktop menor */
+@media (max-width:1400px){
+    .vehicle-carousel-slide{
+        flex:0 0 30%;
+    }
+}
+
+/* Notebook */
+@media (max-width:1100px){
+    .vehicle-carousel-slide{
+        flex:0 0 38%;
+    }
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .vehicle-carousel-slide{
+        flex:0 0 58%;
+    }
+}
+
+/* Celular */
+@media (max-width:560px){
+
+    .vehicle-carousel-viewport{
+        padding:0 16px;
+    }
+
+    .vehicle-carousel-slide{
+        flex:0 0 92%;
+        padding:0 8px;
+    }
+
+}
+
+
+/* ===========================
+   SETAS
+=========================== */
+
+.vehicle-carousel-arrow{
+
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:52px;
+    height:52px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#fff;
+    color:#222;
+
+    font-size:1.45rem;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 8px 28px rgba(0,0,0,.12);
+
+    transition:
+        background .25s,
+        color .25s,
+        transform .25s;
+
+    z-index:5;
+
+}
+
+.vehicle-carousel-arrow.left{
+    left:-18px;
+}
+
+.vehicle-carousel-arrow.right{
+    right:-18px;
+}
+
+.vehicle-carousel-arrow:hover{
+
+    background:var(--vermelho);
+
+    color:#fff;
+
+}
+
+
+/* ===========================
+   DOTS
+=========================== */
+
+.vehicle-carousel-dots{
+
+    display:flex;
+    justify-content:center;
+    gap:10px;
+
+    margin-top:30px;
+
+}
+
+.vehicle-carousel-dot{
+
+    width:10px;
+    height:10px;
+
+    border:none;
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:#d3d3d3;
+
+    transition:
+        width .25s,
+        background .25s;
+
+}
+
+.vehicle-carousel-dot.active{
+
+    width:34px;
+
+    border-radius:999px;
+
+    background:var(--vermelho);
+
+}
+
+
+/* ===========================
+   EFEITO DOS CARDS
+=========================== */
+
+.vehicle-carousel-slide .card{
+
+    transition:
+        transform .35s,
+        box-shadow .35s;
+
+}
+
+.vehicle-carousel-slide:hover .card{
+
+    transform:translateY(-6px);
+
+}
+
+
+/* ===========================
+   RESPONSIVO SETAS
+=========================== */
+
+@media(max-width:768px){
+
+    .vehicle-carousel-arrow{
+
+        width:42px;
+        height:42px;
+
+        font-size:1.1rem;
+
+    }
+
+    .vehicle-carousel-arrow.left{
+        left:4px;
+    }
+
+    .vehicle-carousel-arrow.right{
+        right:4px;
+    }
+
+}
+
 /* ─── CARDS ─── */
 .grid-carros {
   display: grid;

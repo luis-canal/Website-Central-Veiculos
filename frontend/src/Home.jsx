@@ -1,7 +1,7 @@
 ﻿import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeroCarousel from './components/HeroCarousel';
-import VehicleCard from './components/VehicleCard';
+import VehicleCarousel from './components/VehicleCarousel';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
 
@@ -11,7 +11,7 @@ function Home() {
 
   const destaques = useMemo(() => {
     const selecionados = carros.filter((carro) => carro.destaque);
-    return selecionados.length ? selecionados : carros.slice(0, 3);
+    return selecionados.length ? selecionados : carros.slice(0, 10);
   }, [carros]);
 
   const handleSearch = (query) => {
@@ -38,11 +38,9 @@ function Home() {
         </div>
         {loading && <p>Carregando veículos...</p>}
         {error && <p className="erro">{error}</p>}
-        <div className="grid-carros">
-          {destaques.map((carro) => (
-            <VehicleCard key={carro.id} carro={carro} />
-          ))}
-        </div>
+        {!loading && !error && (
+          <VehicleCarousel vehicles={destaques} />
+        )}
       </section>
 
       <section className="secao diferenciais">
