@@ -580,7 +580,21 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .card-detalhes { display: flex; gap: 14px; margin-bottom: 14px; }
 
-.card-detalhe { display: flex; align-items: center; gap: 5px; font-size: 0.83rem; color: var(--texto-suave); }
+.card-detalhe { 
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+  font-size: 0.83rem; 
+  color: var(--texto-suave); 
+}
+
+
+.brand-logo{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+    flex-shrink:0;
+}
 
 .card-footer {
   display: flex;

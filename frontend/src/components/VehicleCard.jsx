@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils';
 import { ArrowRight } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 function VehicleCard({ carro }) {
   return (
@@ -24,7 +25,10 @@ function VehicleCard({ carro }) {
           <div className="card-nome">{carro.nome}</div>
 
           <div className="card-detalhes">
-            <span className="card-detalhe">{carro.marca}</span>
+            <span className="card-detalhe">
+              <BrandLogo marca={carro.marca} />
+              {carro.marca}
+            </span>
           </div>
 
           <div className="card-footer">
