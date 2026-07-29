@@ -6,6 +6,9 @@ function VehicleCard({ carro }) {
     <article className="card">
       <Link to={`/carro/${carro.id}`} className="card-link">
         <div className="card-img-wrapper">
+          <div className="card-year-badge">
+            {carro.ano_modelo}
+          </div>
           {carro.imagens?.[0] ? (
             <img
               src={carro.imagens[0]}
@@ -21,7 +24,6 @@ function VehicleCard({ carro }) {
 
           <div className="card-detalhes">
             <span className="card-detalhe">{carro.marca}</span>
-            <span className="card-detalhe">{carro.ano_modelo}</span>
           </div>
 
           <div className="card-footer">
