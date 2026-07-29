@@ -30,7 +30,7 @@ function Home() {
         <div className="secao-header">
           <div>
             <h2>Veículos em <span>destaque</span></h2>
-            <p>Modelos selecionados com procedência garantida e revisão completa.</p>
+            <p>Modelos selecionados com procedência garantida</p>
           </div>
           <button type="button" className="secao-link" onClick={() => navigate('/estoque')}>
             Ver todo o estoque →

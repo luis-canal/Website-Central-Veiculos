@@ -464,6 +464,30 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   margin-bottom: 32px;
 }
 
+.destaque-veiculos .secao-header h2{
+    font-family: var(--fonte-bold);
+    font-size: 2.0rem;
+    font-weight: 700;
+    color: var(--branco);
+    line-height: 1.1;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+.destaque-veiculos .secao-header h2 span{
+    color: var(--vermelho-claro);
+}
+
+.destaque-veiculos .secao-header p{
+    font-family: var(--fonte);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--branco);
+    line-height: 1.7;
+    max-width: 600px;
+    text-align: left;
+}
+
 .secao-titulo {
   font-family: var(--fonte-bold);
   font-size: 2.2rem;
@@ -493,6 +517,11 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .secao-link:hover { gap: 10px; }
+
+.destaque-veiculos{ 
+  background: var(--preto); 
+  padding: 80px 40px;
+}
 
 /* ─── CARDS ─── */
 .grid-carros {
