@@ -4,6 +4,7 @@ import HeroCarousel from './components/HeroCarousel';
 import VehicleCarousel from './components/VehicleCarousel';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
+import { ArrowRight } from 'lucide-react';
 
 function Home() {
   const navigate = useNavigate();
@@ -33,7 +34,8 @@ function Home() {
             <p>Modelos selecionados com procedência garantida</p>
           </div>
           <button type="button" className="secao-link" onClick={() => navigate('/estoque')}>
-            Ver todo o estoque →
+            Ver todo o estoque
+            <ArrowRight size={20} strokeWidth={1.9} />
           </button>
         </div>
         {loading && <p>Carregando veículos...</p>}

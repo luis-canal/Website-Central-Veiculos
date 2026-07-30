@@ -502,21 +502,47 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .secao-titulo span { color: var(--vermelho); }
 
-.secao-link {
-  color: var(--vermelho);
-  text-decoration: none;
-  font-family: var(--fonte-bold);
-  font-size: 1rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: gap 0.2s;
+.secao-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 240px;
+    height: 50px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 6px;
+    background: var(--vermelho);
+    color: var(--branco);
+    font-family: var(--fonte-bold);
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
-.secao-link:hover { gap: 10px; }
+.secao-link svg{
+    flex-shrink: 0;
+    transition: transform .25s ease;
+}
+
+.secao-link:hover{
+    background: var(--vermelho-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+.secao-link:hover svg{
+    transform: translateX(3px);
+}
+
+.secao-link:active{
+    transform: translateY(0);
+}
 
 .destaque-veiculos{ 
   background: var(--preto); 
