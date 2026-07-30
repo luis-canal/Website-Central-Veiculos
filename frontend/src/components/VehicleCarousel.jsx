@@ -14,7 +14,7 @@ function VehicleCarousel({ vehicles = [] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-      align: 'center',
+      align: 'start',
       dragFree: false,
       containScroll: false,
     },

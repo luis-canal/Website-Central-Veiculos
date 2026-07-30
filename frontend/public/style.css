@@ -561,15 +561,16 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .vehicle-carousel-viewport{
     overflow:hidden;
-    padding: 0 40px;
+    width: 100%;
 }
 
 .vehicle-carousel-container{
     display:flex;
+    align-items:stretch;
 }
 
 .vehicle-carousel-slide{
-    flex:0 0 23%;
+    flex:0 0 20.5%;
     min-width:0;
     padding:0 12px;
     box-sizing:border-box;
@@ -650,11 +651,11 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .vehicle-carousel-arrow.left{
-    left:-18px;
+    left: 20px;
 }
 
 .vehicle-carousel-arrow.right{
-    right:-18px;
+    right:20px;
 }
 
 .vehicle-carousel-arrow:hover{
