@@ -617,37 +617,26 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 =========================== */
 
 .vehicle-carousel-arrow{
-
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-
-    width:52px;
-    height:52px;
-
-    border:none;
-    border-radius:50%;
-
-    background:#fff;
-    color:#222;
-
-    font-size:1.45rem;
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:
-        0 8px 28px rgba(0,0,0,.12);
-
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .45);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0;
     transition:
+        opacity .25s,
         background .25s,
-        color .25s,
         transform .25s;
-
-    z-index:5;
-
+    z-index: 20;
 }
 
 .vehicle-carousel-arrow.left{
@@ -658,12 +647,12 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
     right:20px;
 }
 
+.vehicle-carousel:hover .vehicle-carousel-arrow{
+    opacity: 1;
+}
+
 .vehicle-carousel-arrow:hover{
-
-    background:var(--vermelho);
-
-    color:#fff;
-
+    background: rgba(0, 0, 0, .7);
 }
 
 
