@@ -555,17 +555,13 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .vehicle-carousel{
     position:relative;
-    width:100%;
+    width: calc(100% + 80px);
+    margin-left: -40px;
 }
 
 .vehicle-carousel-viewport{
     overflow:hidden;
-
-    /*
-      Espaço nas laterais para aparecer
-      parte do card anterior e do próximo.
-    */
-    padding:0 4%;
+    padding: 0 40px;
 }
 
 .vehicle-carousel-container{
