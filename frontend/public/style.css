@@ -570,7 +570,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .vehicle-carousel-slide{
-    flex:0 0 20.5%;
+    flex:0 0 19%;
     min-width:0;
     padding:0 12px;
     box-sizing:border-box;
