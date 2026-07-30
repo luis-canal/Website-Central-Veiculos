@@ -47,7 +47,10 @@ function Home() {
 
       <section className="secao diferenciais">
         <div className="secao-header">
-          <h2>Diferenciais da <span>loja</span></h2>
+          <div className="diferenciais-texto">
+            <h2>Veículos em <span>destaque</span></h2>
+            <p>Modelos selecionados com procedência garantida</p>
+          </div>
         </div>
         <div className="grid-diferenciais">
           {loja.diferenciais.map((item) => (

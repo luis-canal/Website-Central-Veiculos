@@ -8,7 +8,7 @@
   --cinza-escuro: #2e2e2e;
   --cinza-medio: #555;
   --cinza-borda: #d8d8d8;
-  --cinza-fundo: #f0eeec;
+  --cinza-fundo: #d4d4d4;
   --branco: #ffffff;
   --texto-escuro: #1a1a1a;
   --texto-medio: #444;
@@ -464,7 +464,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   margin-bottom: 32px;
 }
 
-.destaque-veiculos .secao-header h2{
+.secao-header h2{
     font-family: var(--fonte-bold);
     font-size: 2.0rem;
     font-weight: 700;
@@ -474,11 +474,15 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
     text-align: left;
 }
 
-.destaque-veiculos .secao-header h2 span{
+.secao-header .diferenciais-texto h2{
+    color: var(--preto);
+}
+
+.secao-header h2 span{
     color: var(--vermelho-claro);
 }
 
-.destaque-veiculos .secao-header p{
+.secao-header p{
     font-family: var(--fonte);
     font-size: 1rem;
     font-weight: 400;
@@ -487,6 +491,11 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
     max-width: 600px;
     text-align: left;
 }
+
+.secao-header .diferenciais-texto p{
+    color: var(--preto);
+}
+
 
 .secao-titulo {
   font-family: var(--fonte-bold);
