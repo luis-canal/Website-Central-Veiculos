@@ -821,10 +821,16 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   font-size: 1.2rem;
   font-weight:600;
   line-height:1.35;
+  min-height: calc(1.35em * 2);
   letter-spacing: 0.5px;
   margin-bottom: 8px;
   color: var(--preto);
   text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 .card-detalhes { display: flex; gap: 14px; margin-bottom: 14px; }
