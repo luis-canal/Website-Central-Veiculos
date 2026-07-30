@@ -48,8 +48,8 @@ function Home() {
       <section className="secao diferenciais">
         <div className="secao-header">
           <div className="diferenciais-texto">
-            <h2>Veículos em <span>destaque</span></h2>
-            <p>Modelos selecionados com procedência garantida</p>
+            <h2><span>Diferenciais</span> da loja</h2>
+            <p>Mais segurança, transparência e facilidade para você</p>
           </div>
         </div>
         <div className="grid-diferenciais">
@@ -64,7 +64,10 @@ function Home() {
 
       <section className="secao marcas">
         <div className="secao-header">
-          <h2>Marcas que trabalhamos</h2>
+          <div>
+          <h2><span>Marcas</span> que trabalhamos</h2>
+          <p>Diversas marcas disponíveis em nosso catálogo</p>
+          </div>
         </div>
         <div className="marcas-lista">
           {loja.marcas.map((marca) => (

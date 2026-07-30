@@ -496,7 +496,6 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
     color: var(--preto);
 }
 
-
 .secao-titulo {
   font-family: var(--fonte-bold);
   font-size: 2.2rem;
@@ -552,6 +551,23 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .secao-link:active{
     transform: translateY(0);
 }
+
+.diferenciais{
+  background: var(--cinza-fundo);
+}
+
+.sobre{
+  background: var(--cinza-fundo);
+}
+
+.mapa{
+  background: var(--cinza-fundo);
+}
+
+.marcas{
+  background: var(--preto);
+}
+
 
 .destaque-veiculos{ 
   background: var(--preto); 
