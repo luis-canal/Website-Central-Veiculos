@@ -17,10 +17,10 @@ export const loja = {
   logo: '/logo_central.PNG',
   heroImagens: ['/banner02.PNG', '/banner03.PNG', '/banner01.PNG'],
   diferenciais: [
-    { titulo: 'Procedência garantida', descricao: 'Veículos selecionados com histórico confiável.', icone: 'shield' },
-    { titulo: 'Financiamento', descricao: 'Sicredi, C6 Bank, Cresol e Sicoob.', icone: 'suitcase' },
-    { titulo: 'Aceitamos troca', descricao: 'Avaliamos seu usado na negociação.', icone: 'handshake' },
-    { titulo: 'Veículos revisados', descricao: 'Prontos para rodar com segurança.', icone: 'car' },
+    { titulo: 'Procedência garantida', descricao: 'Veículos selecionados com histórico confiável e documentação em dias.', icone: 'shield' },
+    { titulo: 'Financiamento', descricao: 'Parcerias com Sicredi, C6 Bank, Cresol e Sicoob para as melhores condições.', icone: 'suitcase' },
+    { titulo: 'Aceitamos troca', descricao: 'Avaliamos seu veículo e utilizamos como parte do pagamento.', icone: 'handshake' },
+    { titulo: 'Veículos revisados', descricao: 'Preparados para oferecer mais segurança e tranquilidade.', icone: 'car' },
   ],
   marcas: [
     'Citroën',
