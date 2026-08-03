@@ -64,11 +64,15 @@ function Home() {
         <div className="grid-diferenciais">
           {loja.diferenciais.map((item) => (
             <article key={item.titulo} className="diferencial-card">
-              <div className="icone-diferencial">
-                <FontAwesomeIcon icon={iconesDiferenciais[item.icone]} />
+              <div className="diferencial-card-body">
+                <div className="icone-diferencial">
+                  <FontAwesomeIcon icon={iconesDiferenciais[item.icone]} />
+                </div>
+                <div className="diferencial-card-textos">
+                  <h3>{item.titulo}</h3>
+                  <p>{item.descricao}</p>
+                </div>
               </div>
-              <h3>{item.titulo}</h3>
-              <p>{item.descricao}</p>
             </article>
           ))}
         </div>
