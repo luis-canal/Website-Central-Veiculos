@@ -5,6 +5,15 @@ import VehicleCarousel from './components/VehicleCarousel';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
 import { ArrowRight } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShield, faSuitcase, faHandshake, faCar } from '@fortawesome/free-solid-svg-icons';
+
+const iconesDiferenciais = {
+  shield: faShield,
+  suitcase: faSuitcase,
+  handshake: faHandshake,
+  car: faCar,
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -55,6 +64,9 @@ function Home() {
         <div className="grid-diferenciais">
           {loja.diferenciais.map((item) => (
             <article key={item.titulo} className="diferencial-card">
+              <div className="icone-diferencial">
+                <FontAwesomeIcon icon={iconesDiferenciais[item.icone]} />
+              </div>
               <h3>{item.titulo}</h3>
               <p>{item.descricao}</p>
             </article>

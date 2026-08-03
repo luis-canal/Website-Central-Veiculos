@@ -338,22 +338,44 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .diferencial-card {
-  background: #fff;
-  border: 1px solid var(--cinza-borda);
-  border-radius: 10px;
-  padding: 26px;
-  box-shadow: 0 16px 30px rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: 0 24px 50px rgba(0,0,0,0.18);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  overflow: hidden;
+}
+
+.diferencial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 34px 70px rgba(0,0,0,0.22);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.icone-diferencial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(217, 43, 43, 0.14);
+  color: var(--vermelho);
+  font-size: 1.35rem;
+  margin-bottom: 22px;
 }
 
 .diferencial-card h3 {
   font-family: var(--fonte-bold);
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: #fff;
 }
 
 .diferencial-card p {
-  color: var(--texto-suave);
-  line-height: 1.75;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
 }
 
 .marcas-lista {
