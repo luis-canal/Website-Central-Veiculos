@@ -553,15 +553,18 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 .diferenciais{
-  background: var(--cinza-fundo);
+  background: var(--cinza-escuro);
+  color: var(--branco);
 }
 
 .sobre{
-  background: var(--cinza-fundo);
+  background: var(--cinza-escuro);
+  color: var(--branco);
 }
 
 .mapa{
-  background: var(--cinza-fundo);
+  background: var(--cinza-escuro);
+  color: var(--branco);
 }
 
 .marcas{
@@ -572,6 +575,11 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .destaque-veiculos{ 
   background: var(--preto); 
   padding: 80px 40px;
+}
+
+.diferenciais .secao-header .diferenciais-texto h2,
+.diferenciais .secao-header .diferenciais-texto p {
+  color: var(--branco);
 }
 
 /* ===========================
