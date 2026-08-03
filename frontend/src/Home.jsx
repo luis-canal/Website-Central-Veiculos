@@ -77,9 +77,11 @@ function Home() {
       </section>
 
       <section className="secao sobre">
-        <div className="sobre-texto">
+        <div className="secao-header">
+          <div>
           <h2>Sobre a empresa</h2>
           <p>{loja.sobre}</p>
+          </div>
         </div>
       </section>
 
