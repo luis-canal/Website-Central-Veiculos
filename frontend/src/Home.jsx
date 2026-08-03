@@ -2,6 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import HeroCarousel from './components/HeroCarousel';
 import VehicleCarousel from './components/VehicleCarousel';
+import BrandLogo from './components/BrandLogo';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
 import { ArrowRight } from 'lucide-react';
@@ -87,7 +88,10 @@ function Home() {
         </div>
         <div className="marcas-lista">
           {loja.marcas.map((marca) => (
-            <span key={marca} className="marca-item">{marca}</span>
+            <div key={marca} className="marca-card">
+              <BrandLogo marca={marca} />
+              <span>{marca}</span>
+            </div>
           ))}
         </div>
       </section>
