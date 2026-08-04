@@ -573,6 +573,15 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   font-family: var(--fonte-bold);
   color: var(--preto);
   margin-bottom: 6px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mapa-horario-coluna p:last-child {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 .erro {
