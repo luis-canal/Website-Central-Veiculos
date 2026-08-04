@@ -503,7 +503,6 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   border-radius: 16px;
   background: rgba(255,255,255,0.7);
   border: 1px solid rgba(217, 43, 43, 0.12);
-  margin-bottom: 14px;
 }
 
 .mapa-item-icon {
