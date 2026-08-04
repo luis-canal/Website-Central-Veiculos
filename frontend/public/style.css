@@ -495,14 +495,6 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   color: var(--vermelho-claro);
 }
 
-.mapa-divider {
-  width: 72px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--vermelho), rgba(217,43,43,0.2));
-  border-radius: 999px;
-  margin: 0 auto;
-}
-
 .mapa-item-card {
   display: flex;
   align-items: flex-start;
