@@ -116,16 +116,24 @@ function Home() {
         </div>
         <div className="mapa-info">
           <div className="mapa-info-header">
-            <span className="mapa-badge">Nossa localização</span>
-            <h3>Visite nossa loja</h3>
+            <h3><span>Visite</span> nossa loja</h3>
+            <div className="mapa-divider" />
           </div>
-          <div className="mapa-item">
-            <MapPin size={18} strokeWidth={2} />
-            <p>{loja.endereco}</p>
+          <div className="mapa-item-card">
+            <div className="mapa-item-icon">
+              <MapPin size={18} strokeWidth={2} />
+            </div>
+            <div className="mapa-item-content">
+              <h4>Endereço</h4>
+              <p>{loja.endereco}</p>
+            </div>
           </div>
-          <div className="mapa-item">
-            <Clock3 size={18} strokeWidth={2} />
-            <div>
+          <div className="mapa-item-card">
+            <div className="mapa-item-icon">
+              <Clock3 size={18} strokeWidth={2} />
+            </div>
+            <div className="mapa-item-content">
+              <h4>Horário</h4>
               <p>{loja.horario.semana}</p>
               <p>{loja.horario.sabado}</p>
             </div>
