@@ -518,17 +518,61 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   flex-shrink: 0;
 }
 
+.mapa-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
 .mapa-item-content h4 {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   font-family: var(--fonte-bold);
   font-size: 1rem;
   color: var(--preto);
+  text-align: left;
 }
 
 .mapa-item-content p {
   line-height: 1.7;
   margin: 0;
   color: var(--texto-medio);
+  text-align: left;
+}
+
+.mapa-divider-horizontal {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(217,43,43,0.35), transparent);
+  margin: 8px 0 16px;
+}
+
+.mapa-horario-card {
+  align-items: flex-start;
+}
+
+.mapa-horario-content {
+  width: 100%;
+}
+
+.mapa-horario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.mapa-horario-coluna {
+  padding-right: 16px;
+}
+
+.mapa-horario-coluna-separador {
+  padding-left: 16px;
+  padding-right: 0;
+  border-left: 1px solid rgba(217,43,43,0.2);
+}
+
+.mapa-horario-label {
+  font-family: var(--fonte-bold);
+  color: var(--preto);
+  margin-bottom: 6px;
 }
 
 .erro {

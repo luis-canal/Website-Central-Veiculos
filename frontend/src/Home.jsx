@@ -127,14 +127,23 @@ function Home() {
               <p>{loja.endereco}</p>
             </div>
           </div>
-          <div className="mapa-item-card">
+          <div className="mapa-divider-horizontal" />
+          <div className="mapa-item-card mapa-horario-card">
             <div className="mapa-item-icon">
               <Clock3 size={18} strokeWidth={2} />
             </div>
-            <div className="mapa-item-content">
+            <div className="mapa-item-content mapa-horario-content">
               <h4>Horário</h4>
-              <p>{loja.horario.semana}</p>
-              <p>{loja.horario.sabado}</p>
+              <div className="mapa-horario-grid">
+                <div className="mapa-horario-coluna">
+                  <p className="mapa-horario-label">Segunda a sexta</p>
+                  <p>{loja.horario.semana}</p>
+                </div>
+                <div className="mapa-horario-coluna mapa-horario-coluna-separador">
+                  <p className="mapa-horario-label">Sábado</p>
+                  <p>{loja.horario.sabado}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
