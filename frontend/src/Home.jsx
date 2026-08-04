@@ -117,7 +117,6 @@ function Home() {
         <div className="mapa-info">
           <div className="mapa-info-header">
             <h3><span>Visite</span> nossa loja</h3>
-            <div className="mapa-divider" />
           </div>
           <div className="mapa-item-card">
             <div className="mapa-item-icon">

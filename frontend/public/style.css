@@ -486,8 +486,8 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   font-family: var(--fonte-bold);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--branco);
-  text-align: left;
+  color: var(--preto);
+  text-align: center;
   line-height: 1.1;
 }
 
@@ -500,6 +500,7 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   height: 3px;
   background: linear-gradient(90deg, var(--vermelho), rgba(217,43,43,0.2));
   border-radius: 999px;
+  margin: 0 auto;
 }
 
 .mapa-item-card {
