@@ -5,7 +5,7 @@ import VehicleCarousel from './components/VehicleCarousel';
 import BrandLogo from './components/BrandLogo';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Clock3, MapPin } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShield, faSuitcase, faHandshake, faCar } from '@fortawesome/free-solid-svg-icons';
 
@@ -99,7 +99,7 @@ function Home() {
       <section className="secao sobre">
         <div className="secao-header">
           <div>
-          <h2>Sobre a empresa</h2>
+          <h2>Sobre a <span>{loja.nome}</span></h2>
           <p>{loja.sobre}</p>
           </div>
         </div>
@@ -115,10 +115,21 @@ function Home() {
           />
         </div>
         <div className="mapa-info">
-          <h3>Visite nossa loja</h3>
-          <p>{loja.endereco}</p>
-          <p>{loja.horario.semana}</p>
-          <p>{loja.horario.sabado}</p>
+          <div className="mapa-info-header">
+            <span className="mapa-badge">Nossa localização</span>
+            <h3>Visite nossa loja</h3>
+          </div>
+          <div className="mapa-item">
+            <MapPin size={18} strokeWidth={2} />
+            <p>{loja.endereco}</p>
+          </div>
+          <div className="mapa-item">
+            <Clock3 size={18} strokeWidth={2} />
+            <div>
+              <p>{loja.horario.semana}</p>
+              <p>{loja.horario.sabado}</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
