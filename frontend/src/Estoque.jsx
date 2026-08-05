@@ -50,7 +50,7 @@ function Estoque() {
   const anoOptions = useMemo(() => {
     const anos = carros
       .map((carro) => carro?.ano)
-      .filter((ano) => ano \!== undefined && ano \!== null)
+      .filter((ano) => ano !== undefined && ano !== null)
       .map(String);
 
     return Array.from(new Set(anos)).sort((a, b) => Number(b) - Number(a));
