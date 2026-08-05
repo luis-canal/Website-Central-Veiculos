@@ -9,7 +9,7 @@ function Footer() {
         </a>
 
         <div className="footer-contact">
-          <h4>Contato e redes</h4>
+          <h4>Contato e Redes sociais</h4>
           <div className="social-links">
             <a href="https://wa.me/5599999999999" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="social-link whatsapp">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5C21 6.25 16.75 2 11.5 2S2 6.25 2 11.5c0 2 .6 3.85 1.7 5.4L2 22l5.3-1.6c1.4.7 3 .9 4.6.9 5.25 0 9.5-4.25 9.5-9.5z" fill="#25D366"/><path d="M17 15.5c-.3-.1-1.8-.9-2-.9-.2 0-.3-.1-.4-.3-.1-.1-.5-.6-.7-.8-.2-.2-.3-.3-.5-.6-.2-.2-.4-.3-.6-.3s-.4 0-.6 0c-.2 0-.5.1-.8.5-.3.4-1 1.4-1 2.1s.9 1.8 2 2.4c1.1.6 2.4.8 3 .6.1 0 .9-.4 1-.5.2-.1.5-.3.6-.5.1-.1.1-.3 0-.4-.1-.1-.4-.3-.7-.4z" fill="#fff"/></svg>
