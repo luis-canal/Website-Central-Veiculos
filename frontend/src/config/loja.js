@@ -13,7 +13,7 @@ export const loja = {
     sabado: '8:00 – 11:30',
   },
   mapsEmbedUrl:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.7886865326635!2d-51.845565657572905!3d-28.38843522042582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e277fa4942f033%3A0xf9a60d1b65f7743!2sAv.%20Fabr%C3%ADcio%20de%20Oliveira%20Pilar%2C%20779%2C%20David%20Canabarro%20-%20RS%2C%2099980-000!5e1!3m2!1spt-BR!2sbr!4v1782867917583!5m2!1spt-BR!2sbr',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.026646417759!2d-51.84702497986875!3d-28.38826313739345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e2774eb576ca55%3A0x1e36bcb91b02ab70!2sCentral%20Ve%C3%ADculos!5e0!3m2!1spt-BR!2sbr!4v1785934129358!5m2!1spt-BR!2sbr',
   logo: '/logo_central.PNG',
   heroImagens: ['/banner02.PNG', '/banner03.PNG', '/banner01.PNG'],
   diferenciais: [
