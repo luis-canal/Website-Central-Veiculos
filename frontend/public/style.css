@@ -298,37 +298,111 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
   padding: 80px 40px;
 }
 
-.busca-rapida {
+.searchbar-card {
+  background: rgba(10, 13, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  padding: 24px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1080px;
+  margin: 24px auto 0;
+}
+
+.searchbar-form {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 24px;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.busca-rapida input {
-  flex: 1 1 320px;
-  padding: 16px 18px;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.12);
+.searchbar-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.searchbar-input-field {
+  position: relative;
+  width: 100%;
+}
+
+.searchbar-input-field input {
+  width: 100%;
+  padding: 16px 18px 16px 50px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
   font-size: 1rem;
 }
 
-.busca-rapida input::placeholder {
-  color: rgba(255,255,255,0.78);
+.searchbar-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.68);
 }
 
-.busca-rapida button {
-  background: var(--vermelho);
-  color: #fff;
-  border: none;
+.searchbar-button {
+  min-width: 150px;
   padding: 16px 24px;
-  border-radius: 6px;
-  font-family: var(--fonte-bold);
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
+}
+
+.searchbar-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.searchbar-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+}
+
+.searchbar-filter span {
+  font-weight: 600;
+}
+
+.searchbar-filter select,
+.searchbar-filter input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.searchbar-price-range {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.searchbar-input-small {
+  padding: 12px 14px;
+}
+
+@media (max-width: 880px) {
+  .searchbar-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .searchbar-row {
+    grid-template-columns: 1fr;
+  }
+
+  .searchbar-filters {
+    grid-template-columns: 1fr;
+  }
 }
 
 .grid-diferenciais {

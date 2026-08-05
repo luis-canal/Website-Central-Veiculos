@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HeroCarousel from './components/HeroCarousel';
 import VehicleCarousel from './components/VehicleCarousel';
 import BrandLogo from './components/BrandLogo';
+import SearchBar from './components/SearchBar';
 import { useCarros } from './hooks/useCarros';
 import { loja } from './config/loja';
 import { ArrowRight, Clock3, MapPin } from 'lucide-react';
@@ -17,27 +18,37 @@ const iconesDiferenciais = {
 };
 
 function Home() {
-  const navigate = useNavigate();
-  const { carros, loading, error } = useCarros();
+const navigate = useNavigate();
+const { carros, loading, error } = useCarros();
 
-  const destaques = useMemo(() => {
-    const selecionados = carros.filter((carro) => carro.destaque);
-    return selecionados.length ? selecionados : carros.slice(0, 10);
-  }, [carros]);
+const destaques = useMemo(() => {
+  const selecionados = carros.filter((carro) => carro.destaque);
+  return selecionados.length ? selecionados : carros.slice(0, 10);
+}, [carros]);
 
-  const handleSearch = (query) => {
-    const params = new URLSearchParams();
-    if (query) params.set('q', query);
-    navigate(`/estoque?${params.toString()}`);
-  };
+function handleSearch(query) {
+  const params = new URLSearchParams();
+  if (query) params.set('q', query);
+  navigate(`/estoque?${params.toString()}`);
+}
 
-  return (
-    <div>
-      <section className="hero-home">
-        <HeroCarousel images={loja.heroImagens} />
-      </section>
+return (
+  <div>
+    <section className="hero-home">
+      <HeroCarousel images={loja.heroImagens} />
+    </section>
 
-      <section className="secao destaque-veiculos">
+    <div className="searchbar-hero-wrapper">
+      <SearchBar
+        mode="home"
+        initialValue=""
+        onSearch={handleSearch}
+        showFilters={false}
+        marcaOptions={loja.marcas}
+      />
+    </div>
+
+    <section className="secao destaque-veiculos">
         <div className="secao-header">
           <div>
             <h2>Veículos em <span>destaque</span></h2>
