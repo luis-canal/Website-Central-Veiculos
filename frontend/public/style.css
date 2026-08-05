@@ -1345,8 +1345,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: rgba(255,255,255,.06);
   transition:
@@ -1359,7 +1359,13 @@ footer {
   transform: translateY(-3px);
 }
 
-.social-link svg { display: block; }
+.social-link img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
 
 .footer-copy {
   color: rgba(255,255,255,.45);
