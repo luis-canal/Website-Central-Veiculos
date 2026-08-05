@@ -543,8 +543,13 @@ nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
 
 .mapa-divider-horizontal {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(217,43,43,0.35), transparent);
-  margin: 8px 0 16px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 43, 43, 0.35),
+    transparent
+  );
+  margin: 16px 0;
 }
 
 .mapa-horario-card {
