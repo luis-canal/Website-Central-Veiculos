@@ -3,6 +3,9 @@ export function filterCars(cars = [], filters = {}) {
     search = '',
     marca: marcaFiltro = '',
     ano: anoFiltro = '',
+    anoMin = '',
+    anoMax = '',
+    kmMax = '',
     precoMin = '',
     precoMax = '',
     sortBy = 'preco-asc',
@@ -12,27 +15,43 @@ export function filterCars(cars = [], filters = {}) {
   const precoMinValue = Number(precoMin);
   const precoMaxValue = Number(precoMax);
   const anoValue = Number(anoFiltro);
+  const anoMinValue = Number(anoMin);
+  const anoMaxValue = Number(anoMax);
+  const kmMaxValue = Number(kmMax);
 
   const filtrados = cars.filter((carro) => {
     const nome = String(carro?.nome || '').toLowerCase();
     const marca = String(carro?.marca || '').toLowerCase();
     const observacoes = String(carro?.observacoes || '').toLowerCase();
     const ano = Number(carro?.ano || carro?.year || 0);
+    const km = Number(carro?.km || 0);
 
     const atendeTexto =
-      \!termo ||
+      !termo ||
       [nome, marca, observacoes].some((valor) => valor.includes(termo));
 
     const atendeMarca =
-      \!marcaFiltro || String(carro?.marca || '').toLowerCase() === marcaFiltro.toLowerCase();
+      !marcaFiltro || String(carro?.marca || '').toLowerCase() === marcaFiltro.toLowerCase();
 
-    const atendeAno = \!anoFiltro || ano === anoValue;
+    const atendeAno = !anoFiltro || ano === anoValue;
+    const atendeAnoMin = Number.isNaN(anoMinValue) || ano >= anoMinValue;
+    const atendeAnoMax = Number.isNaN(anoMaxValue) || ano <= anoMaxValue;
+    const atendeKmMax = Number.isNaN(kmMaxValue) || km <= kmMaxValue;
     const atendePrecoMin =
       Number.isNaN(precoMinValue) || Number(carro?.preco || 0) >= precoMinValue;
     const atendePrecoMax =
       Number.isNaN(precoMaxValue) || Number(carro?.preco || 0) <= precoMaxValue;
 
-    return atendeTexto && atendeMarca && atendeAno && atendePrecoMin && atendePrecoMax;
+    return (
+      atendeTexto &&
+      atendeMarca &&
+      atendeAno &&
+      atendeAnoMin &&
+      atendeAnoMax &&
+      atendeKmMax &&
+      atendePrecoMin &&
+      atendePrecoMax
+    );
   });
 
   const sorted = [...filtrados].sort((a, b) => {
