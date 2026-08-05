@@ -1309,7 +1309,6 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 28px;
   text-align: center;
 }
 
@@ -1324,6 +1323,7 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  margin-top: 0;
 }
 
 .footer-contact h4 {
@@ -1368,6 +1368,7 @@ footer {
 }
 
 .footer-copy {
+  margin-top: 28px;
   color: rgba(255,255,255,.45);
   font-size: .85rem;
 }
