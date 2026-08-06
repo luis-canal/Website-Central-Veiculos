@@ -1114,7 +1114,7 @@ nav a.destaque:hover {
 /* Tablet */
 @media (max-width:768px){
     .vehicle-carousel-slide{
-        flex:0 0 58%;
+        flex:0 0 55%;
     }
 }
 
@@ -1126,7 +1126,7 @@ nav a.destaque:hover {
     }
 
     .vehicle-carousel-slide{
-        flex:0 0 92%;
+        flex:0 0 52%;
         padding:0 8px;
     }
 
