@@ -442,8 +442,6 @@ nav a.destaque:hover {
   width: 100%;
   height: 54px;
   box-sizing: border-box;
-
-  /* Espaço à direita para a lupa */
   padding: 0 52px 0 18px;
 
   border: 1px solid transparent;
@@ -471,7 +469,6 @@ nav a.destaque:hover {
   height: 21px;
 
   transform: translateY(-50%);
-
   color: var(--vermelho);
   pointer-events: none;
 }
@@ -527,6 +524,27 @@ nav a.destaque:hover {
 
 .searchbar-filter {
   min-width: 0;
+}
+
+.searchbar-select-field,
+.searchbar-number-field {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.searchbar-field-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.searchbar-field-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--vermelho);
+  flex-shrink: 0;
 }
 
 .searchbar-filter select,
@@ -592,7 +610,7 @@ nav a.destaque:hover {
 }
 
 .searchbar-input-small {
-  padding: 12px 14px;
+  padding: 12px 14px 12px 42px;
 }
 
 @media (max-width: 980px) {

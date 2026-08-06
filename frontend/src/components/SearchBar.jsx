@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import {
+  Search,
+  Tag,
+  CalendarDays,
+  Banknote,
+  ArrowUpDown,
+} from 'lucide-react';
 
 function SearchBar({
   mode = 'home',
@@ -55,6 +61,7 @@ function SearchBar({
               aria-label="Buscar veículos"
             />
           </div>
+
           <button type="submit" className="btn-primario searchbar-button">
             Buscar
           </button>
@@ -63,65 +70,91 @@ function SearchBar({
         {showFilters && (
           <div className="searchbar-filters">
             <div className="searchbar-filter">
-              <select
-                value={marca}
-                onChange={(event) => handleChange('marca', event.target.value)}
-              >
-                <option value="">Marca</option>
-                {marcaOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="searchbar-filter">
-              <select
-                value={ano}
-                onChange={(event) => handleChange('ano', event.target.value)}
-              >
-                <option value="">Ano</option>
-                {anoOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="searchbar-filter">
-              <div className="searchbar-price-range">
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="Preço mínimo"
-                  value={precoMin}
-                  onChange={(event) => handleChange('precoMin', event.target.value)}
-                  className="searchbar-input-small"
-                />
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="Preço máximo"
-                  value={precoMax}
-                  onChange={(event) => handleChange('precoMax', event.target.value)}
-                  className="searchbar-input-small"
-                />
+              <div className="searchbar-field-row">
+                <Tag className="searchbar-field-icon" />
+                <div className="searchbar-select-field">
+                  <select
+                    value={marca}
+                    onChange={(event) => handleChange('marca', event.target.value)}
+                    aria-label="Filtrar por marca"
+                  >
+                    <option value="">Marca</option>
+                    {marcaOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
 
             <div className="searchbar-filter">
-              <select
-                value={sortBy}
-                onChange={(event) => handleChange('sortBy', event.target.value)}
-              >
-                <option value="preco-asc">Ordenar por</option>
-                <option value="preco-asc">Menor preço</option>
-                <option value="preco-desc">Maior preço</option>
-                <option value="ano-desc">Mais novos</option>
-                <option value="ano-asc">Mais antigos</option>
-              </select>
+              <div className="searchbar-field-row">
+                <CalendarDays className="searchbar-field-icon" />
+                <div className="searchbar-select-field">
+                  <select
+                    value={ano}
+                    onChange={(event) => handleChange('ano', event.target.value)}
+                    aria-label="Filtrar por ano"
+                  >
+                    <option value="">Ano</option>
+                    {anoOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="searchbar-filter">
+              <div className="searchbar-price-range">
+                <div className="searchbar-field-row searchbar-price-first">
+                  <Banknote className="searchbar-field-icon" />
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="Preço mínimo"
+                    value={precoMin}
+                    onChange={(event) => handleChange('precoMin', event.target.value)}
+                    className="searchbar-input-small"
+                    aria-label="Preço mínimo"
+                  />
+                </div>
+
+                <div className="searchbar-field-row">
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="Preço máximo"
+                    value={precoMax}
+                    onChange={(event) => handleChange('precoMax', event.target.value)}
+                    className="searchbar-input-small"
+                    aria-label="Preço máximo"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="searchbar-filter">
+              <div className="searchbar-field-row">
+                <ArrowUpDown className="searchbar-field-icon" />
+                <div className="searchbar-select-field">
+                  <select
+                    value={sortBy}
+                    onChange={(event) => handleChange('sortBy', event.target.value)}
+                    aria-label="Ordenar resultados"
+                  >
+                    <option value="preco-asc">Ordenar por</option>
+                    <option value="preco-asc">Menor preço</option>
+                    <option value="preco-desc">Maior preço</option>
+                    <option value="ano-desc">Mais novos</option>
+                    <option value="ano-asc">Mais antigos</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         )}
