@@ -35,20 +35,35 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--preto);
-  border-bottom: 3px solid var(--vermelho);
+
+  height: 72px;
   padding: 0 40px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+
+  background: var(--preto);
+  border-bottom: 3px solid var(--vermelho);
 }
 
-.logo { display: flex; align-items: center; text-decoration: none; }
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
 .logo img {
+  display: block;
+  width: auto;
   height: 80px;
   object-fit: contain;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 nav a {
@@ -56,12 +71,19 @@ nav a {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
+
   padding: 8px 16px;
   border-radius: 4px;
-  transition: all 0.2s;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
-nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+nav a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
 
 nav a.destaque {
   background: var(--vermelho);
@@ -69,10 +91,64 @@ nav a.destaque {
   font-weight: 700;
 }
 
-nav a.destaque:hover { background: var(--vermelho-claro); }
+nav a.destaque:hover {
+  background: var(--vermelho-claro);
+}
 
-nav a.voltar { display: flex; align-items: center; gap: 6px; color: #ccc; }
-nav a.voltar:hover { color: #fff; background: rgba(255,255,255,0.08); }
+/* Botão do WhatsApp */
+
+.whatsapp-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.whatsapp-header-icon {
+  display: block;
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 720px) {
+  header {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .logo img {
+    height: 66px;
+  }
+
+  nav {
+    gap: 2px;
+  }
+
+  nav a {
+    padding: 8px 10px;
+    font-size: 0.84rem;
+  }
+
+  .whatsapp-header {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    border-radius: 8px;
+  }
+
+  .whatsapp-header-text {
+    display: none;
+  }
+
+  .whatsapp-header-icon {
+    width: 21px;
+    height: 21px;
+  }
+}
 
 /* ─── HERO ─── */
 .hero-home {
