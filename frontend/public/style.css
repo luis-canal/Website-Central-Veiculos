@@ -905,6 +905,13 @@ nav a.destaque:hover {
   white-space: nowrap;
 }
 
+@media (max-width: 768px) {
+  .mapa {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
 .erro {
   color: #d92b2b;
   font-weight: 600;
