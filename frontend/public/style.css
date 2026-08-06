@@ -526,21 +526,7 @@ nav a.destaque:hover {
 }
 
 .searchbar-filter {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
   min-width: 0;
-}
-
-.searchbar-filter > span {
-  color: rgba(255, 255, 255, 0.78);
-
-  font-family: var(--fonte-bold);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
 }
 
 .searchbar-filter select,

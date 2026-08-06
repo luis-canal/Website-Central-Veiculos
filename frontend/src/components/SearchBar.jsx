@@ -62,43 +62,40 @@ function SearchBar({
 
         {showFilters && (
           <div className="searchbar-filters">
-            <label className="searchbar-filter">
-              <span>Marca</span>
+            <div className="searchbar-filter">
               <select
                 value={marca}
                 onChange={(event) => handleChange('marca', event.target.value)}
               >
-                <option value="">Todas</option>
+                <option value="">Marca</option>
                 {marcaOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label className="searchbar-filter">
-              <span>Ano</span>
+            <div className="searchbar-filter">
               <select
                 value={ano}
                 onChange={(event) => handleChange('ano', event.target.value)}
               >
-                <option value="">Todos</option>
+                <option value="">Ano</option>
                 {anoOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label className="searchbar-filter">
-              <span>Preço</span>
+            <div className="searchbar-filter">
               <div className="searchbar-price-range">
                 <input
                   type="number"
                   min="0"
-                  placeholder="Mínimo"
+                  placeholder="Preço mínimo"
                   value={precoMin}
                   onChange={(event) => handleChange('precoMin', event.target.value)}
                   className="searchbar-input-small"
@@ -106,26 +103,26 @@ function SearchBar({
                 <input
                   type="number"
                   min="0"
-                  placeholder="Máximo"
+                  placeholder="Preço máximo"
                   value={precoMax}
                   onChange={(event) => handleChange('precoMax', event.target.value)}
                   className="searchbar-input-small"
                 />
               </div>
-            </label>
+            </div>
 
-            <label className="searchbar-filter">
-              <span>Ordenação</span>
+            <div className="searchbar-filter">
               <select
                 value={sortBy}
                 onChange={(event) => handleChange('sortBy', event.target.value)}
               >
+                <option value="preco-asc">Ordenar por</option>
                 <option value="preco-asc">Menor preço</option>
                 <option value="preco-desc">Maior preço</option>
                 <option value="ano-desc">Mais novos</option>
                 <option value="ano-asc">Mais antigos</option>
               </select>
-            </label>
+            </div>
           </div>
         )}
       </form>
