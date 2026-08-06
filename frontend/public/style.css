@@ -1448,18 +1448,35 @@ nav a.destaque:hover {
 
 .estoque-hero h1 {
   font-family: var(--fonte-bold);
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 6px;
+  margin: 0 0 10px;
+  line-height: 1.1;
 }
 
 .estoque-hero h1 span { color: var(--vermelho); }
 .estoque-hero p { color: #888; font-weight: 300; font-size: 0.95rem; }
 
 .estoque-filtros { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+  .estoque-hero {
+    padding: 36px 20px 28px;
+  }
+
+  .estoque-hero h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .estoque-hero p {
+    font-size: 0.9rem;
+  }
+}
 
 .filtro-btn {
   background: transparent;
