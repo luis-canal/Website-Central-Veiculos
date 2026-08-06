@@ -12,18 +12,18 @@ export function filterCars(cars = [], filters = {}) {
   } = filters;
 
   const termo = search.trim().toLowerCase();
-  const precoMinValue = Number(precoMin);
-  const precoMaxValue = Number(precoMax);
-  const anoValue = Number(anoFiltro);
-  const anoMinValue = Number(anoMin);
-  const anoMaxValue = Number(anoMax);
-  const kmMaxValue = Number(kmMax);
+  const precoMinValue = precoMin === '' ? NaN : Number(precoMin);
+  const precoMaxValue = precoMax === '' ? NaN : Number(precoMax);
+  const anoValue = anoFiltro === '' ? NaN : Number(anoFiltro);
+  const anoMinValue = anoMin === '' ? NaN : Number(anoMin);
+  const anoMaxValue = anoMax === '' ? NaN : Number(anoMax);
+  const kmMaxValue = kmMax === '' ? NaN : Number(kmMax);
 
   const filtrados = cars.filter((carro) => {
     const nome = String(carro?.nome || '').toLowerCase();
     const marca = String(carro?.marca || '').toLowerCase();
     const observacoes = String(carro?.observacoes || '').toLowerCase();
-    const ano = Number(carro?.ano || carro?.year || 0);
+    const ano = Number(carro?.ano || carro?.ano_modelo || carro?.year || 0);
     const km = Number(carro?.km || 0);
 
     const atendeTexto =
