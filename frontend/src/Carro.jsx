@@ -39,7 +39,11 @@ function Carro() {
         </div>
         <aside className="carro-sidebar">
           <div className="carro-identidade">
-            <BrandLogo marca={carro.marca} />
+            <BrandLogo
+              marca={carro.marca}
+              bare
+              className="carro-brand-logo"
+            />
             <span className="carro-marca">{carro.marca}</span>
           </div>
           <h1 className="carro-nome">{carro.nome}</h1>

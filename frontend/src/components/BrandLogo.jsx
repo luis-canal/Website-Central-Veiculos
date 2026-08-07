@@ -59,7 +59,7 @@ function normalizeBrand(brand = '') {
     .trim();
 }
 
-export default function BrandLogo({ marca }) {
+export default function BrandLogo({ marca, bare = false, className = '' }) {
   const normalized = normalizeBrand(marca);
 
   const logo = BRAND_MAP[normalized];
@@ -68,7 +68,18 @@ export default function BrandLogo({ marca }) {
     return null;
   }
 
-    return (
+    if (bare) {
+      return (
+        <img
+          src={logo}
+          alt={marca}
+          className={className}
+          loading="lazy"
+        />
+      );
+    }
+
+  return (
     <span className="brand-logo-container">
         <img
         src={logo}
