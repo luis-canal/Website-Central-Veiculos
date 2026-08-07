@@ -6,6 +6,7 @@ import {
   Banknote,
   ArrowUpDown,
 } from 'lucide-react';
+import CustomSelect from './CustomSelect';
 
 function SearchBar({
   mode = 'home',
@@ -75,18 +76,14 @@ function SearchBar({
                   <Tag className="searchbar-field-icon" />
                 </div>
                 <div className="searchbar-select-field">
-                  <select
+                  <CustomSelect
                     value={marca}
-                    onChange={(event) => handleChange('marca', event.target.value)}
+                    options={marcaOptions}
+                    placeholder="Marca"
+                    onChange={(value) => handleChange('marca', value)}
+                    isSearchable
                     aria-label="Filtrar por marca"
-                  >
-                    <option value="">Marca</option>
-                    {marcaOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
               </div>
             </div>
@@ -97,18 +94,13 @@ function SearchBar({
                   <CalendarDays className="searchbar-field-icon" />
                 </div>
                 <div className="searchbar-select-field">
-                  <select
+                  <CustomSelect
                     value={ano}
-                    onChange={(event) => handleChange('ano', event.target.value)}
+                    options={anoOptions}
+                    placeholder="Ano"
+                    onChange={(value) => handleChange('ano', value)}
                     aria-label="Filtrar por ano"
-                  >
-                    <option value="">Ano</option>
-                    {anoOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
               </div>
             </div>
@@ -150,16 +142,18 @@ function SearchBar({
                   <ArrowUpDown className="searchbar-field-icon" />
                 </div>
                 <div className="searchbar-select-field">
-                  <select
+                  <CustomSelect
                     value={sortBy}
-                    onChange={(event) => handleChange('sortBy', event.target.value)}
+                    options={[
+                      { value: 'preco-desc', label: 'Maior preço' },
+                      { value: 'preco-asc', label: 'Menor preço' },
+                      { value: 'ano-desc', label: 'Mais novos' },
+                      { value: 'ano-asc', label: 'Mais antigos' },
+                    ]}
+                    placeholder="Ordenar por"
+                    onChange={(value) => handleChange('sortBy', value)}
                     aria-label="Ordenar resultados"
-                  >
-                    <option value="preco-desc">Maior preço</option>
-                    <option value="preco-asc">Menor preço</option>
-                    <option value="ano-desc">Mais novos</option>
-                    <option value="ano-asc">Mais antigos</option>
-                  </select>
+                  />
                 </div>
               </div>
             </div>
