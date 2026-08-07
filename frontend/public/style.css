@@ -1413,13 +1413,54 @@ nav a.destaque:hover {
 
 .card:hover img{
     transform: scale(1.03);
+    aspect-ratio: 16/11;
 }
 
 .card-img-wrapper {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16/11;
-  background: var(--cinza-fundo);
+}
+
+.card-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(8px);
+
+  color: #fff;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: .25s;
+  z-index: 5;
+}
+
+.card:hover .card-arrow {
+  opacity: 1;
+}
+
+.card-arrow:hover {
+  background: rgba(217, 43, 43, .9);
+}
+
+.card-arrow-left {
+  left: 12px;
+}
+
+.card-arrow-right {
+  right: 12px;
 }
 
 .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
