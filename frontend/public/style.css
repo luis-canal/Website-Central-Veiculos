@@ -1924,3 +1924,160 @@ footer {
   footer { padding: 28px 20px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
+
+/* ─── DETALHES DO VEÍCULO ─── */
+.carro-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.carro-identidade {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+}
+
+.carro-identidade .brand-logo-container {
+  width: 42px;
+  height: 42px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(217, 43, 43, 0.1);
+}
+
+.carro-identidade .carro-marca {
+  margin: 0;
+  color: var(--vermelho);
+  font-family: var(--fonte-bold);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.carro-nome {
+  margin: -2px 0 2px;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  text-align: left;
+}
+
+.carro-preco-bloco {
+  margin: 0;
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+.carro-preco-label {
+  margin-bottom: 8px;
+  color: var(--texto-suave);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.carro-preco-valor {
+  color: var(--vermelho);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+}
+
+.carro-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 17px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 18px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.carro-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: rgba(217, 43, 43, 0.1);
+  color: var(--vermelho);
+}
+
+.carro-info-content {
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.carro-info-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--texto-suave);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.carro-info-value {
+  color: var(--preto);
+  font-family: var(--fonte-bold);
+  font-size: 1.05rem;
+}
+
+.carro-observacoes-lista,
+.carro-observacoes-texto {
+  margin: 0;
+  color: var(--texto-medio);
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.carro-observacoes-lista {
+  padding-left: 17px;
+}
+
+.carro-observacoes-lista li + li {
+  margin-top: 5px;
+}
+
+.btn-whatsapp,
+.btn-voltar-estoque {
+  width: 100%;
+  min-height: 52px;
+  margin: 0;
+  border-radius: 14px;
+}
+
+.btn-whatsapp img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.btn-voltar-estoque {
+  color: var(--cinza-escuro);
+  font-family: var(--fonte-bold);
+  font-weight: 600;
+}
+
+.btn-voltar-estoque:hover {
+  color: var(--vermelho);
+  border-color: rgba(217, 43, 43, 0.45);
+  background: rgba(217, 43, 43, 0.06);
+}
+
+@media (max-width: 900px) {
+  .carro-sidebar {
+    gap: 14px;
+  }
+}

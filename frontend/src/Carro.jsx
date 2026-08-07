@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, Calendar, Car as CarIcon } from 'lucide-react';
+import BrandLogo from './components/BrandLogo';
+import whatsappIcon from './assets/icons/whatsapp.svg';
+import { buildWhatsAppLink } from './utils';
 
 function Carro() {
   const { id } = useParams();
@@ -15,6 +19,11 @@ function Carro() {
   if (!carro) return <div>Carregando...</div>;
 
   const imagens = Array.isArray(carro.imagens) ? carro.imagens : [];
+  const observacoes = String(carro.observacoes || '').trim();
+  const observacoesItens = observacoes
+    .split(/\r?\n|\s*[•|]\s*/)
+    .map((item) => item.replace(/^[-*]\s*/, '').trim())
+    .filter(Boolean);
 
   return (
     <main className="carro-page">
@@ -29,7 +38,10 @@ function Carro() {
           )}
         </div>
         <aside className="carro-sidebar">
-          <div className="carro-marca">{carro.marca}</div>
+          <div className="carro-identidade">
+            <BrandLogo marca={carro.marca} />
+            <span className="carro-marca">{carro.marca}</span>
+          </div>
           <h1 className="carro-nome">{carro.nome}</h1>
           <div className="carro-preco-bloco">
             <div className="carro-preco-label">Preço</div>
@@ -40,25 +52,44 @@ function Carro() {
               }).format(carro.preco)}
             </div>
           </div>
-          <div className="carro-specs">
-            <div className="spec">
-              <span className="spec-label">Ano/Modelo:</span>
-              <span className="spec-valor">{carro.ano_modelo}</span>
+          <div className="carro-info-card">
+            <div className="carro-info-icon">
+              <Calendar size={21} strokeWidth={2} />
+            </div>
+            <div className="carro-info-content">
+              <span className="carro-info-label">Ano</span>
+              <strong className="carro-info-value">{carro.ano_modelo || 'Não informado'}</strong>
             </div>
           </div>
-          <a href="https://wa.me/5554999999999" className="btn-whatsapp" target="_blank" rel="noreferrer">
-            💬 Conversar no WhatsApp
+          <div className="carro-info-card carro-sobre-card">
+            <div className="carro-info-icon">
+              <CarIcon size={21} strokeWidth={2} />
+            </div>
+            <div className="carro-info-content">
+              <span className="carro-info-label">Sobre o veículo</span>
+              {observacoesItens.length > 1 ? (
+                <ul className="carro-observacoes-lista">
+                  {observacoesItens.map((item, index) => (
+                    <li key={`${item}-${index}`}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="carro-observacoes-texto">
+                  {observacoes || 'Nenhuma observação informada.'}
+                </p>
+              )}
+            </div>
+          </div>
+          <a href={buildWhatsAppLink(carro)} className="btn-whatsapp" target="_blank" rel="noreferrer">
+            <img src={whatsappIcon} alt="" aria-hidden="true" />
+            <span>Conversar no WhatsApp</span>
           </a>
           <Link to="/estoque" className="btn-voltar-estoque">
-            ← Voltar para o estoque
+            <ArrowLeft size={19} strokeWidth={2} />
+            <span>Voltar para o estoque</span>
           </Link>
         </aside>
       </div>
-
-      <section className="carro-descricao">
-        <h3>Observações</h3>
-        <p>{carro.observacoes}</p>
-      </section>
     </main>
   );
 }
