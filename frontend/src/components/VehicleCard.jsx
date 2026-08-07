@@ -29,7 +29,7 @@ function VehicleCard({ carro }) {
 
   return (
     <article className="card">
-      <Link to={`/carro/${carro.id}`} className="card-link">
+      <Link to={`/carro/${carro.id}`} className="card-link" onMouseLeave={() => setImageIndex(0)}>
 
         <div className="card-img-wrapper">
 
