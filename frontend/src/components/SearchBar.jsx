@@ -81,7 +81,7 @@ function SearchBar({
                     options={marcaOptions}
                     placeholder="Marca"
                     onChange={(value) => handleChange('marca', value)}
-                    isSearchable
+                    isSearchable={false}
                     aria-label="Filtrar por marca"
                   />
                 </div>

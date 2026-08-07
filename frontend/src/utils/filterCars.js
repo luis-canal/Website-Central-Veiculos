@@ -1,3 +1,10 @@
+function getVehicleYear(carro) {
+  const rawYear = carro?.ano ?? carro?.ano_modelo ?? carro?.year ?? 0;
+  const yearMatch = String(rawYear).match(/\d{4}/);
+
+  return yearMatch ? Number(yearMatch[0]) : 0;
+}
+
 export function filterCars(cars = [], filters = {}) {
   const {
     search = '',
@@ -23,7 +30,7 @@ export function filterCars(cars = [], filters = {}) {
     const nome = String(carro?.nome || '').toLowerCase();
     const marca = String(carro?.marca || '').toLowerCase();
     const observacoes = String(carro?.observacoes || '').toLowerCase();
-    const ano = Number(carro?.ano || carro?.ano_modelo || carro?.year || 0);
+    const ano = getVehicleYear(carro);
     const km = Number(carro?.km || 0);
 
     const atendeTexto =
@@ -59,9 +66,9 @@ export function filterCars(cars = [], filters = {}) {
       case 'preco-desc':
         return Number(b?.preco || 0) - Number(a?.preco || 0);
       case 'ano-desc':
-        return Number(b?.ano || 0) - Number(a?.ano || 0);
+        return getVehicleYear(b) - getVehicleYear(a);
       case 'ano-asc':
-        return Number(a?.ano || 0) - Number(b?.ano || 0);
+        return getVehicleYear(a) - getVehicleYear(b);
       case 'nome-asc':
         return String(a?.nome || '').localeCompare(String(b?.nome || ''), 'pt-BR');
       case 'preco-asc':

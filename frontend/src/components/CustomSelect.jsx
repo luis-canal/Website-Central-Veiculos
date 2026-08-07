@@ -81,6 +81,26 @@ const customStyles = {
     ...base,
     padding: 6,
     maxHeight: 220,
+    scrollbarColor: 'rgba(217, 43, 43, 0.45) transparent',
+    scrollbarWidth: 'thin',
+    '&::-webkit-scrollbar': {
+      width: 8,
+    },
+    '&::-webkit-scrollbar-track': {
+      background: 'rgba(217, 43, 43, 0.06)',
+      borderRadius: 999,
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: 'rgba(217, 43, 43, 0.42)',
+      border: '2px solid transparent',
+      backgroundClip: 'padding-box',
+      borderRadius: 999,
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      background: 'rgba(217, 43, 43, 0.7)',
+      border: '2px solid transparent',
+      backgroundClip: 'padding-box',
+    },
   }),
   option: (base, state) => ({
     ...base,
