@@ -38,17 +38,16 @@ return (
       <HeroCarousel images={loja.heroImagens} />
     </section>
 
-    <div className="searchbar-hero-wrapper">
-      <SearchBar
-        mode="home"
-        initialValue=""
-        onSearch={handleSearch}
-        showFilters={false}
-        marcaOptions={loja.marcas}
-      />
-    </div>
-
     <section className="secao destaque-veiculos">
+        <div className="home-searchbar">
+          <SearchBar
+            mode="home"
+            initialValue=""
+            onSearch={handleSearch}
+            showFilters={false}
+            marcaOptions={loja.marcas}
+          />
+        </div>
         <div className="secao-header">
           <div>
             <h2>Veículos em <span>destaque</span></h2>
@@ -59,6 +58,7 @@ return (
             <ArrowRight size={20} strokeWidth={1.9} />
           </button>
         </div>
+
         {loading && <p>Carregando veículos...</p>}
         {error && <p className="erro">{error}</p>}
         {!loading && !error && (
