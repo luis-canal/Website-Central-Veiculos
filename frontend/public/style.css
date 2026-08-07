@@ -428,7 +428,7 @@ nav a.destaque:hover {
 }
 
 .estoque-searchbar .searchbar-card {
-  margin: 20px auto -16px;
+  margin: 20px auto -126px;
 }
 
 .searchbar-form {
@@ -981,6 +981,10 @@ nav a.destaque:hover {
 /* ─── SEÇÕES ─── */
 .secao { padding: 60px 40px; }
 
+.secao-estoque {
+  padding-top: 140px;
+}
+
 .secao-header {
   display: flex;
   align-items: flex-end;
@@ -1311,7 +1315,7 @@ nav a.destaque:hover {
 /* ─── CARDS ─── */
 .grid-carros {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 

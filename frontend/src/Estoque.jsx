@@ -103,7 +103,7 @@ function Estoque() {
         </div>
       </div>
 
-      <section className="secao">
+      <section className="secao secao-estoque">
         <div className="grid-carros">
           {filteredCars.map((carro) => (
             <VehicleCard
