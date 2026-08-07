@@ -71,7 +71,9 @@ function SearchBar({
           <div className="searchbar-filters">
             <div className="searchbar-filter">
               <div className="searchbar-field-row">
-                <Tag className="searchbar-field-icon" />
+                <div className="searchbar-field-icon-box">
+                  <Tag className="searchbar-field-icon" />
+                </div>
                 <div className="searchbar-select-field">
                   <select
                     value={marca}
@@ -91,7 +93,9 @@ function SearchBar({
 
             <div className="searchbar-filter">
               <div className="searchbar-field-row">
-                <CalendarDays className="searchbar-field-icon" />
+                <div className="searchbar-field-icon-box">
+                  <CalendarDays className="searchbar-field-icon" />
+                </div>
                 <div className="searchbar-select-field">
                   <select
                     value={ano}
@@ -112,7 +116,9 @@ function SearchBar({
             <div className="searchbar-filter">
               <div className="searchbar-price-range">
                 <div className="searchbar-field-row searchbar-price-first">
-                  <Banknote className="searchbar-field-icon" />
+                  <div className="searchbar-field-icon-box">
+                    <Banknote className="searchbar-field-icon" />
+                  </div>
                   <input
                     type="number"
                     min="0"
@@ -140,16 +146,17 @@ function SearchBar({
 
             <div className="searchbar-filter">
               <div className="searchbar-field-row">
-                <ArrowUpDown className="searchbar-field-icon" />
+                <div className="searchbar-field-icon-box">
+                  <ArrowUpDown className="searchbar-field-icon" />
+                </div>
                 <div className="searchbar-select-field">
                   <select
                     value={sortBy}
                     onChange={(event) => handleChange('sortBy', event.target.value)}
                     aria-label="Ordenar resultados"
                   >
-                    <option value="preco-asc">Ordenar por</option>
-                    <option value="preco-asc">Menor preço</option>
                     <option value="preco-desc">Maior preço</option>
+                    <option value="preco-asc">Menor preço</option>
                     <option value="ano-desc">Mais novos</option>
                     <option value="ano-asc">Mais antigos</option>
                   </select>

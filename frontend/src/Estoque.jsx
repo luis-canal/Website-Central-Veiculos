@@ -86,7 +86,7 @@ function Estoque() {
 
         <p>
           {carros.length} veículo
-          {carros.length !== 1 ? 's' : ''} disponível
+          {carros.length !== 1 ? 's' : ''} disponíveis
         </p>
 
         <SearchBar
