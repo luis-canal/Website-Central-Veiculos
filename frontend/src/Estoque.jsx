@@ -89,16 +89,18 @@ function Estoque() {
           {carros.length !== 1 ? 's' : ''} disponíveis
         </p>
 
-        <SearchBar
-          mode="estoque"
-          initialValue={searchParams.get('q') || ''}
-          onSearch={handleSearch}
-          showFilters={true}
-          filters={filters}
-          onFiltersChange={handleFiltersChange}
-          marcaOptions={loja.marcas}
-          anoOptions={anoOptions}
-        />
+        <div className="estoque-searchbar">
+          <SearchBar
+            mode="estoque"
+            initialValue={searchParams.get('q') || ''}
+            onSearch={handleSearch}
+            showFilters={true}
+            filters={filters}
+            onFiltersChange={handleFiltersChange}
+            marcaOptions={loja.marcas}
+            anoOptions={anoOptions}
+          />
+        </div>
       </div>
 
       <section className="secao">

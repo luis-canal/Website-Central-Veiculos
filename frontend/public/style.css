@@ -424,6 +424,10 @@ nav a.destaque:hover {
   margin: -16px auto 26px;
 }
 
+.estoque-searchbar .searchbar-card {
+  margin: 20px auto -16px;
+}
+
 .searchbar-form {
   display: flex;
   flex-direction: column;
