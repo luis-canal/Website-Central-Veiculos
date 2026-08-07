@@ -411,13 +411,16 @@ nav a.destaque:hover {
   margin: 24px auto 0;
   padding: 28px;
 
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(248, 249, 250, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 22px;
 
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 16px 40px rgba(15, 23, 42, 0.10),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
 }
 
 .home-searchbar .searchbar-card {
@@ -452,10 +455,10 @@ nav a.destaque:hover {
   box-sizing: border-box;
   padding: 0 52px 0 18px;
 
-  border: 1px solid transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 14px;
 
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   color: var(--preto);
 
   font-family: var(--fonte);
@@ -581,10 +584,10 @@ nav a.destaque:hover {
 
   padding: 0 14px;
 
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
 
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   color: var(--preto);
 
   font-family: var(--fonte);
