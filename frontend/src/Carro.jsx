@@ -48,7 +48,7 @@ function Carro() {
           </div>
           <h1 className="carro-nome">{carro.nome}</h1>
           <div className="carro-preco-bloco">
-            <div className="carro-preco-label">Preço</div>
+            <div className="carro-info-label">Preço</div>
             <div className="carro-preco-valor">
               {new Intl.NumberFormat("pt-BR", {
                 style: "currency",

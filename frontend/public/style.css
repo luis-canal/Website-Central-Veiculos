@@ -2035,8 +2035,8 @@ footer {
 .carro-info-label {
   display: block;
   margin-bottom: 6px;
-  color: var(--texto-suave);
-  font-size: 0.8rem;
+  color: var(--texto-escuro);
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -2044,9 +2044,10 @@ footer {
 }
 
 .carro-info-value {
-  color: var(--preto);
+  margin-top: -4px;
+  color: var(--texto-suave);
   font-family: var(--fonte-bold);
-  font-size: 1.12rem;
+  font-size: 1.42rem;
   text-align: left;
 }
 
