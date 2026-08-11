@@ -1640,7 +1640,12 @@ nav a.destaque:hover {
 .filtro-btn:hover, .filtro-btn.ativo { background: var(--vermelho); color: #fff; border-color: var(--vermelho); }
 
 /* ─── PÁGINA CARRO ─── */
-.carro-page { padding: 50px 40px; max-width: 1200px; margin: 0 auto; }
+.carro-page {
+  width: 100%;
+  max-width: 1360px;
+  padding: 50px 28px;
+  margin: 0 auto;
+}
 
 .carro-grid {
   display: grid;
