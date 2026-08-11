@@ -58,8 +58,9 @@ function Carro() {
           </div>
           <div className="carro-info-card">
             <div className="carro-info-icon">
-              <Calendar size={21} strokeWidth={2} />
+              <Calendar size={28} strokeWidth={2} />
             </div>
+            <div className="carro-info-divider" aria-hidden="true" />
             <div className="carro-info-content">
               <span className="carro-info-label">Ano</span>
               <strong className="carro-info-value">{carro.ano_modelo || 'Não informado'}</strong>
@@ -67,8 +68,9 @@ function Carro() {
           </div>
           <div className="carro-info-card carro-sobre-card">
             <div className="carro-info-icon">
-              <CarIcon size={21} strokeWidth={2} />
+              <CarIcon size={28} strokeWidth={2} />
             </div>
+            <div className="carro-info-divider" aria-hidden="true" />
             <div className="carro-info-content">
               <span className="carro-info-label">Sobre o veículo</span>
               {observacoesItens.length > 1 ? (

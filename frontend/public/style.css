@@ -2013,10 +2013,18 @@ footer {
   height: 52px;
   margin-right: 4px;
   flex-shrink: 0;
-  border-radius: 14px 0 0 14px;
-  background: rgba(217, 43, 43, 0.1);
+  border-radius: 14px;
+  background: rgba(217, 43, 43, 0.12);
   color: var(--vermelho);
-  border-right: 1px solid rgba(217, 43, 43, 0.24);
+}
+
+.carro-info-divider {
+  align-self: stretch;
+  width: 1px;
+  min-height: 52px;
+  margin: 0 2px;
+  background: var(--cinza-borda);
+  flex-shrink: 0;
 }
 
 .carro-info-content {
