@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Car as CarIcon } from 'lucide-react';
+import { ArrowLeft, Calendar, Car as CarIcon, Check } from 'lucide-react';
 import BrandLogo from './components/BrandLogo';
 import whatsappIcon from './assets/icons/whatsapp.svg';
 import { buildWhatsAppLink } from './utils';
@@ -74,7 +74,10 @@ function Carro() {
               {observacoesItens.length > 1 ? (
                 <ul className="carro-observacoes-lista">
                   {observacoesItens.map((item, index) => (
-                    <li key={`${item}-${index}`}>{item}</li>
+                    <li key={`${item}-${index}`}>
+                      <Check className="carro-observacao-check" size={17} strokeWidth={2.5} />
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               ) : (
