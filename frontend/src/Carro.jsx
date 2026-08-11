@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Car as CarIcon, Check } from 'lucide-react';
+import {
+  ArrowLeft,
+  Calendar,
+  Car as CarIcon,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
 import BrandLogo from './components/BrandLogo';
 import whatsappIcon from './assets/icons/whatsapp.svg';
 import { buildWhatsAppLink } from './utils';
@@ -8,6 +15,7 @@ import { buildWhatsAppLink } from './utils';
 function Carro() {
   const { id } = useParams();
   const [carro, setCarro] = useState(null);
+  const [imagemAtual, setImagemAtual] = useState(0);
 
   useEffect(() => {
     fetch(`/api/carro/${id}`)
@@ -19,6 +27,20 @@ function Carro() {
   if (!carro) return <div>Carregando...</div>;
 
   const imagens = Array.isArray(carro.imagens) ? carro.imagens : [];
+  const imagemPrincipal = imagens[imagemAtual] || imagens[0];
+
+  const proximaImagem = () => {
+    setImagemAtual((indice) => (indice + 1) % imagens.length);
+  };
+
+  const imagemAnterior = () => {
+    setImagemAtual((indice) => (indice - 1 + imagens.length) % imagens.length);
+  };
+
+  const selecionarImagem = (indice) => {
+    setImagemAtual(indice);
+  };
+
   const observacoes = String(carro.observacoes || '').trim();
   const observacoesItens = observacoes
     .split(/\r?\n|\s*[•|]\s*/)
@@ -30,9 +52,54 @@ function Carro() {
       <div className="carro-grid">
         <div className="carro-galeria">
           {imagens.length > 0 ? (
-            imagens.map((img, index) => (
-              <img key={index} src={img} alt={`${carro.nome} - ${index + 1}`} style={{ width: '100%', height: 'auto', marginBottom: '10px' }} />
-            ))
+            <>
+              <div className="carro-galeria-principal">
+                <img
+                  src={imagemPrincipal}
+                  alt={`${carro.nome} - imagem ${imagemAtual + 1}`}
+                  className="carro-galeria-imagem-principal"
+                />
+                {imagens.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="carro-galeria-seta carro-galeria-seta-esquerda"
+                      onClick={imagemAnterior}
+                      aria-label="Imagem anterior"
+                    >
+                      <ChevronLeft size={24} strokeWidth={2.2} />
+                    </button>
+                    <button
+                      type="button"
+                      className="carro-galeria-seta carro-galeria-seta-direita"
+                      onClick={proximaImagem}
+                      aria-label="Próxima imagem"
+                    >
+                      <ChevronRight size={24} strokeWidth={2.2} />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {imagens.length > 1 && (
+                <div className="carro-galeria-miniaturas" aria-label="Miniaturas das imagens">
+                  {imagens.map((img, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      className={`carro-galeria-miniatura ${
+                        index === imagemAtual ? 'ativa' : ''
+                      }`}
+                      onClick={() => selecionarImagem(index)}
+                      aria-label={`Selecionar imagem ${index + 1}`}
+                      aria-current={index === imagemAtual ? 'true' : undefined}
+                    >
+                      <img src={img} alt={`${carro.nome} - miniatura ${index + 1}`} />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           ) : (
             <div className="img-placeholder">🚗</div>
           )}
