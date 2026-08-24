@@ -9,6 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 class VehicleSyncService:
+    MAX_DROP_PERCENTAGE = 50
+
     def __init__(self, session_factory, scraper=None):
         self.session_factory = session_factory
         self.scraper = scraper
@@ -17,13 +19,53 @@ class VehicleSyncService:
         if self.scraper is None:
             raise ValueError("A scraper instance is required")
 
-        scraped_vehicles = self.scraper.scrape()
-        now = datetime.now(timezone.utc)
-        created = 0
-        updated = 0
-        marked_unavailable = 0
+        try:
+            scraped_vehicles = self.scraper.scrape()
+        except Exception:
+            logger.exception("Vehicle synchronization aborted because scraper failed")
+            return {
+                "aborted": True,
+                "reason": "scraper_exception",
+                "created": 0,
+                "updated": 0,
+                "marked_unavailable": 0,
+            }
+
+        if len(scraped_vehicles) == 0:
+            logger.warning("Vehicle synchronization aborted: scraper returned zero vehicles")
+            return {
+                "aborted": True,
+                "reason": "zero_results",
+                "created": 0,
+                "updated": 0,
+                "marked_unavailable": 0,
+            }
 
         with self.session_factory() as session:
+            current_total = session.query(Vehicle).count()
+
+            if current_total > 0:
+                found_count = len(scraped_vehicles)
+                drop_percentage = (1 - (found_count / current_total)) * 100
+                if found_count <= 0 or drop_percentage >= self.MAX_DROP_PERCENTAGE:
+                    logger.warning(
+                        "Vehicle synchronization aborted: percentage drop %.2f%% (%d found, %d current)",
+                        drop_percentage,
+                        found_count,
+                        current_total,
+                    )
+                    return {
+                        "aborted": True,
+                        "reason": "drop_too_large",
+                        "created": 0,
+                        "updated": 0,
+                        "marked_unavailable": 0,
+                    }
+
+            now = datetime.now(timezone.utc)
+            created = 0
+            updated = 0
+            marked_unavailable = 0
             seen_keys = set()
 
             for data in scraped_vehicles:
@@ -56,6 +98,8 @@ class VehicleSyncService:
             session.commit()
 
         return {
+            "aborted": False,
+            "reason": None,
             "created": created,
             "updated": updated,
             "marked_unavailable": marked_unavailable,
