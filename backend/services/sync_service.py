@@ -1,9 +1,7 @@
-import logging
 import json
+import logging
 from datetime import datetime, timezone
-from typing import Dict, Any
-
-from sqlalchemy.orm import Session
+from typing import Dict
 
 from backend.models import Vehicle
 
@@ -26,14 +24,19 @@ class VehicleSyncService:
         marked_unavailable = 0
 
         with self.session_factory() as session:
-            seen_ids = set()
+            seen_keys = set()
 
             for data in scraped_vehicles:
-                seen_ids.add(data["id"])
+                source = data.get("source")
+                external_id = data.get("external_id")
+                if not source or not external_id:
+                    continue
+
+                seen_keys.add((source, external_id))
 
                 vehicle = (
                     session.query(Vehicle)
-                    .filter(Vehicle.id == data["id"])
+                    .filter(Vehicle.source == source, Vehicle.external_id == external_id)
                     .first()
                 )
 
@@ -46,7 +49,7 @@ class VehicleSyncService:
 
             marked_unavailable = self._mark_missing_as_unavailable(
                 session,
-                seen_ids,
+                seen_keys,
                 now
             )
 
@@ -58,10 +61,10 @@ class VehicleSyncService:
             "marked_unavailable": marked_unavailable,
         }
 
-
     def _create_vehicle(self, session, data, now):
         vehicle = Vehicle(
-            id=data["id"],
+            external_id=data["external_id"],
+            source=data["source"],
             url=data["url"],
             nome=data["nome"],
             marca=data["marca"],
@@ -78,6 +81,8 @@ class VehicleSyncService:
         session.add(vehicle)
 
     def _update_vehicle(self, vehicle, data, now):
+        vehicle.external_id = data["external_id"]
+        vehicle.source = data["source"]
         vehicle.url = data["url"]
         vehicle.nome = data["nome"]
         vehicle.marca = data["marca"]
@@ -90,7 +95,7 @@ class VehicleSyncService:
         vehicle.last_seen_at = now
         vehicle.updated_at = now
 
-    def _mark_missing_as_unavailable(self, session, seen_ids, now):
+    def _mark_missing_as_unavailable(self, session, seen_keys, now):
         vehicles = (
             session.query(Vehicle)
             .filter(Vehicle.is_available.is_(True))
@@ -100,7 +105,7 @@ class VehicleSyncService:
         marked = 0
 
         for vehicle in vehicles:
-            if vehicle.id not in seen_ids:
+            if (vehicle.source, vehicle.external_id) not in seen_keys:
                 vehicle.is_available = False
                 vehicle.updated_at = now
                 marked += 1

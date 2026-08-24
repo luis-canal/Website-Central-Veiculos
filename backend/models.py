@@ -1,14 +1,21 @@
 import json
+import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text
+
+from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text, UniqueConstraint
 
 from backend.database import Base
 
 
 class Vehicle(Base):
     __tablename__ = "vehicles"
+    __table_args__ = (
+        UniqueConstraint("source", "external_id", name="uq_vehicle_source_external_id"),
+    )
 
-    id = Column(String(255), primary_key=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    external_id = Column(String(255), nullable=False)
+    source = Column(String(100), nullable=False, default="unknown")
     url = Column(String(500), nullable=False)
     nome = Column(String(255), nullable=False)
     marca = Column(String(255), nullable=True)
@@ -24,6 +31,8 @@ class Vehicle(Base):
     def to_dict(self):
         return {
             "id": self.id,
+            "external_id": self.external_id,
+            "source": self.source,
             "url": self.url,
             "nome": self.nome,
             "marca": self.marca,

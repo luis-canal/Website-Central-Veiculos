@@ -18,12 +18,15 @@ class VehicleScraper:
         self.base_url = base_url or SCRAPER_URL
         self.timeout = timeout or SCRAPER_TIMEOUT
         self.session = session or requests.Session()
-        self.session = session or requests.Session()
 
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0",
             "Accept-Language": "pt-BR,pt;q=0.9"
         })
+
+    @property
+    def source(self):
+        return urlparse(self.base_url).netloc.replace("www.", "") or "unknown"
 
     def scrape(self):
         vehicles = []
@@ -53,7 +56,8 @@ class VehicleScraper:
         dados = self._extract_details(soup)
 
         return {
-            "id": vehicle_id,
+            "external_id": vehicle_id,
+            "source": self.source,
             "url": url,
             "nome": self._extract_name(soup),
             "marca": dados.get("marca", ""),
