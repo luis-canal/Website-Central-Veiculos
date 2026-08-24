@@ -1,8 +1,9 @@
 import json
 import uuid
 from datetime import datetime, timezone
+from decimal import Decimal
 
-from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, Column, DateTime, Numeric, String, Text, UniqueConstraint
 
 from backend.database import Base
 
@@ -19,8 +20,8 @@ class Vehicle(Base):
     url = Column(String(500), nullable=False)
     nome = Column(String(255), nullable=False)
     marca = Column(String(255), nullable=True)
-    preco = Column(Integer, nullable=True)
-    ano_modelo = Column(String(20), nullable=True)
+    preco = Column(Numeric(12, 2), nullable=True)
+    ano_modelo = Column(String(50), nullable=True)
     observacoes = Column(Text, nullable=True)
     imagens = Column(Text, nullable=True)
     is_available = Column(Boolean, default=True, nullable=False)
@@ -36,7 +37,7 @@ class Vehicle(Base):
             "url": self.url,
             "nome": self.nome,
             "marca": self.marca,
-            "preco": self.preco,
+            "preco": float(self.preco) if self.preco is not None else None,
             "ano_modelo": self.ano_modelo,
             "observacoes": self.observacoes,
             "imagens": self._parse_json(self.imagens),
